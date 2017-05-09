@@ -11,7 +11,7 @@ var suggestionsBox = require('./fact-finder-suggestions-box');
 var factFinderSuggestions = {
 
     url: '/fact-finder/suggestions?format=jsonp&query=',
-    maxItemsCount: 4,
+    maxItemsCount: 5,
     queryText: '',
 
     query: function (queryText) {
@@ -30,7 +30,6 @@ var factFinderSuggestions = {
 
     handleAjaxResponse: function (response) {
         var searchResult = response;
-
         if (searchResult == undefined) {
             return false;
         }
@@ -47,15 +46,21 @@ var factFinderSuggestions = {
 
     prepareObjectsList: function (items) {
         var objectsList = [];
-        items = this.getDecreasedItemsList(items);
 
         $.each(items, function (i, item) {
-            objectsList.push({
-                'name': factFinderSuggestions.getHighlited(item.label, factFinderSuggestions.queryText),
-                'url': item.attributes.deeplink,
-                'image': item.imageUrl
-            });
+            if (item.type == 'category' || item.type == 'productName') {
+                objectsList.push({
+                    'name': factFinderSuggestions.getHighlited(item.label, factFinderSuggestions.queryText),
+                    'url': item.attributes.deeplink,
+                    'image': item.imageUrl,
+                    'type': item.type,
+                    'attributes': item.attributes,
+                    'label': item.label
+                });
+            }
         });
+
+        objectsList = this.getDecreasedItemsList(objectsList);
 
         return objectsList;
     },

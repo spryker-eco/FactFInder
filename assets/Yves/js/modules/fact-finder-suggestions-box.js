@@ -10,17 +10,24 @@ var $ = require('jquery');
 var suggestionsBox = {
 
     allProductsUrl: '/fact-finder?query=',
+    categoriesUrl: '/fact-finder?filterCategory=',
+    parentCategoriesUrl: '/fact-finder?filterCategoryPathROOT=',
     cursorPosition: -1,
     hidden: true,
 
     prepareSuggestionsBlock: function (objectsList)     {
-        this.clearSuggestionsBlock();
+        this.clearProductSuggestionsBlock();
+        this.clearCategoriesSuggestionsBlock();
         this.resetCursorPosition();
 
         $.each(objectsList, function (i, item) {
-            var productTemplateHtml = suggestionsBox.getProductTemplateHtml(item);
-
-            $('.ff-products').append(productTemplateHtml);
+            if (item.type == 'productName') {
+                var productTemplateHtml = suggestionsBox.getProductTemplateHtml(item);
+                $('.ff-products').append(productTemplateHtml);
+            } else {
+                var categoryTemplateHtml = suggestionsBox.getCategoryTemplateHtml(item);
+                $('.ff-categories').append(categoryTemplateHtml);
+            }
         });
 
         this.setSeeAllProductsLink();
@@ -38,8 +45,29 @@ var suggestionsBox = {
         return productTemplateHtml;
     },
 
-    clearSuggestionsBlock: function () {
+    getCategoryTemplateHtml: function (item) {
+        var categoryTemplate = $('#suggestions-box-row').clone();
+        var categoryTemplateHtml = $(categoryTemplate).prop('innerHTML');
+
+        if (item.attributes.parentCategory !== "") {
+            item.url = this.categoriesUrl + encodeURIComponent(item.label);
+        } else {
+            item.url = this.parentCategoriesUrl + encodeURIComponent(item.label);
+        }
+
+        $.each(item, function (index, value) {
+            categoryTemplateHtml = categoryTemplateHtml.replace(':' + index, value);
+        });
+
+        return categoryTemplateHtml;
+    },
+
+    clearProductSuggestionsBlock: function () {
         $('.ff-products').html('');
+    },
+
+    clearCategoriesSuggestionsBlock: function () {
+        $('.ff-categories').html('');
     },
 
     showSuggestionsBox: function (show) {

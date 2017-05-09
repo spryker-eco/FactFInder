@@ -15,29 +15,22 @@
         <div class="callout suggestions-panel">
 
             <div class="row">
-                {#<div class="columns __no-margin-bottom">
-                    <h6 class="show-for-medium">Search suggestions</h6>
-                    <ul class="no-bullet">
+                <div class="columns __no-margin-bottom">
+                    <h6>{{ 'global.search.categories' | trans }}</h6>
 
-                    </ul>
-
-                    <div class="show-for-medium">
+                    <div class="ff-categories">
 
                     </div>
-
-                    <div class="show-for-medium">
-
-                    </div>
-                </div>#}
+                </div>
 
                 <div class="columns show-for-medium __no-margin-bottom">
-                    <h6>Products</h6>
+                    <h6>{{ 'global.search.products' | trans }}</h6>
 
                     <div class="ff-products">
                     </div>
 
                     <div class="text-right">
-                        <a class="ff-all-products" href="#">See all products »</a>
+                        <a class="ff-all-products" href="#">{{ 'global.search.all_products' | trans }} »</a>
                     </div>
                 </div>
             </div>
@@ -50,13 +43,12 @@
 <script type="text/template" id="suggestions-box-row">
     <a class="row suggestions-panel__product js-product js-navigable" href=":url">
         <span class="columns">
-            <img class="thumbnail" src=:image style="height: 60px">
+            <img class="thumbnail" src=:image >
         </span>
 
         <span class="small-9 columns ff-product-name">
             :name
             <br>
-            {#<strong>:price €</strong>#}
         </span>
     </a>
 </script>
