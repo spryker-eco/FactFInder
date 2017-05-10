@@ -7,9 +7,9 @@
 
 namespace SprykerEco\Yves\FactFinderDemo;
 
-use SprykerEco\Yves\FactFinderDemo\Dependency\Clients\FactFinderDemoToFactFinderClientBridge;
 use Spryker\Yves\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Yves\Kernel\Container;
+use SprykerEco\Yves\FactFinderDemo\Dependency\Clients\FactFinderDemoToFactFinderClientBridge;
 
 class FactFinderDemoDependencyProvider extends AbstractBundleDependencyProvider
 {
