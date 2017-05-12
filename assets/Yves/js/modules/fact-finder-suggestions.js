@@ -51,7 +51,7 @@ var factFinderSuggestions = {
             if (item.type == 'category' || item.type == 'productName') {
                 objectsList.push({
                     'name': factFinderSuggestions.getHighlited(item.label, factFinderSuggestions.queryText),
-                    'url': item.attributes.deeplink,
+                    'url': item.attributes.ProductURL,
                     'image': item.imageUrl,
                     'type': item.type,
                     'attributes': item.attributes,

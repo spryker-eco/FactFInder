@@ -11,7 +11,6 @@ var suggestionsBox = {
 
     allProductsUrl: '/fact-finder?query=',
     categoriesUrl: '/fact-finder?filterCategory=',
-    parentCategoriesUrl: '/fact-finder?filterCategoryPathROOT=',
     cursorPosition: -1,
     hidden: true,
 
@@ -49,11 +48,7 @@ var suggestionsBox = {
         var categoryTemplate = $('#suggestions-box-row').clone();
         var categoryTemplateHtml = $(categoryTemplate).prop('innerHTML');
 
-        if (item.attributes.parentCategory !== "") {
-            item.url = this.categoriesUrl + encodeURIComponent(item.label);
-        } else {
-            item.url = this.parentCategoriesUrl + encodeURIComponent(item.label);
-        }
+        item.url = this.categoriesUrl + encodeURIComponent(item.label);
 
         $.each(item, function (index, value) {
             categoryTemplateHtml = categoryTemplateHtml.replace(':' + index, value);
