@@ -5,15 +5,15 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerEco\Yves\FactFinderDemo\Controller;
+namespace SprykerEco\Yves\FactFinder\Controller;
 
-use Generated\Shared\Transfer\FactFinderSearchRequestTransfer;
+use Generated\Shared\Transfer\FactFinderApiSearchRequestTransfer;
 use Spryker\Shared\Kernel\Store;
 use Spryker\Yves\Kernel\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @method \SprykerEco\Yves\FactFinderDemo\FactFinderDemoFactory getFactory()
+ * @method \SprykerEco\Yves\FactFinder\FactFinderDemoFactory getFactory()
  */
 class SearchController extends AbstractController
 {
@@ -25,7 +25,7 @@ class SearchController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $factFinderSearchRequestTransfer = new FactFinderSearchRequestTransfer();
+        $factFinderSearchRequestTransfer = new FactFinderApiSearchRequestTransfer();
         $factFinderSearchRequestTransfer->setQuery($request->query->get('query', '*'));
         $factFinderSearchRequestTransfer->setPage($request->query->get('page'));
         $factFinderSearchRequestTransfer->setSortName($request->query->get('sortName'));

@@ -1,13 +1,13 @@
 {
-  "name": "spryker-eco/fact-finder-demo",
-  "description": "FactFinderDemo bundle",
+  "name": "spryker-eco/fact-finder",
+  "description": "FactFinder bundle",
   "license": "MIT",
   "require": {
     "spryker/kernel": "^3.0.0",
     "spryker/symfony": "^3.0.0"
   },
   "require-dev": {
-    "spryker-eco/fact-finder": "^0.1.0"
+    "spryker-eco/fact-finder-api": "^0.1.0"
   },
   "autoload": {
     "psr-0": {

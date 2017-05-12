@@ -5,13 +5,13 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerEco\Yves\FactFinderDemo;
+namespace SprykerEco\Yves\FactFinder;
 
 use Spryker\Yves\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Yves\Kernel\Container;
-use SprykerEco\Yves\FactFinderDemo\Dependency\Clients\FactFinderDemoToFactFinderClientBridge;
+use SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientBridge;
 
-class FactFinderDemoDependencyProvider extends AbstractBundleDependencyProvider
+class FactFinderDependencyProvider extends AbstractBundleDependencyProvider
 {
 
     const FACT_FINDER_CLIENT = 'FACT_FINDER_CLIENT';
@@ -40,7 +40,7 @@ class FactFinderDemoDependencyProvider extends AbstractBundleDependencyProvider
                 ->factFinder()
                 ->client();
 
-            return new FactFinderDemoToFactFinderClientBridge($factFinderClient);
+            return new FactFinderToFactFinderClientBridge($factFinderClient);
         };
 
         return $container;

@@ -5,14 +5,14 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerEco\Yves\FactFinderDemo\Controller;
+namespace SprykerEco\Yves\FactFinder\Controller;
 
-use Generated\Shared\Transfer\FactFinderSuggestRequestTransfer;
+use Generated\Shared\Transfer\FactFinderApiSuggestRequestTransfer;
 use Spryker\Yves\Kernel\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @method \SprykerEco\Yves\FactFinderDemo\FactFinderDemoFactory getFactory()
+ * @method \SprykerEco\Yves\FactFinder\FactFinderDemoFactory getFactory()
  */
 class SuggestionsController extends AbstractController
 {
@@ -24,7 +24,7 @@ class SuggestionsController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $factFinderSuggestRequestTransfer = new FactFinderSuggestRequestTransfer();
+        $factFinderSuggestRequestTransfer = new FactFinderApiSuggestRequestTransfer();
         $query = $request->query->get('query', '*');
 
         $factFinderSuggestRequestTransfer->setQuery($query);

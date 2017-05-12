@@ -1,13 +1,3 @@
-{#
-  Parameters:
-    * parameters (array) : associative array that contains the current route-arguments
-    * currentPage (int) : the current page you are in
-    * paginationPath (string) : the route name to use for links
-    * showAlwaysFirstAndLast (bool) : Always show first and last link (just disabled)
-    * maxPage (int) : represents the total number of existing pages
-    * extremePagesLimit (int): the number of first and last pages to be displayed (default 1)
-    * nearbyPagesLimit (int): the number of pages that are displayed around the active page (default 2)
-#}
 {% if extremePagesLimit is not defined %}
     {% set extremePagesLimit = 1 %}
 {% endif %}

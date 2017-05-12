@@ -5,14 +5,14 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-namespace SprykerEco\Yves\FactFinderDemo\Controller;
+namespace SprykerEco\Yves\FactFinder\Controller;
 
-use Generated\Shared\Transfer\FactFinderTrackingRequestTransfer;
+use Generated\Shared\Transfer\FactFinderApiTrackingRequestTransfer;
 use Spryker\Yves\Kernel\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @method \SprykerEco\Yves\FactFinderDemo\FactFinderDemoFactory getFactory()
+ * @method \SprykerEco\Yves\FactFinderDemo\FactFinderFactory getFactory()
  */
 class TrackController extends AbstractController
 {
@@ -24,7 +24,7 @@ class TrackController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $factFinderTrackingRequestTransfer = new FactFinderTrackingRequestTransfer();
+        $factFinderTrackingRequestTransfer = new FactFinderApiTrackingRequestTransfer();
         $factFinderTrackingRequestTransfer->fromArray($request->query->all());
 
         $sessionId = $request->getSession()->getId();
