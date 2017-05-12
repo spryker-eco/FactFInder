@@ -12,7 +12,7 @@ use Generated\Shared\Transfer\FactFinderApiSearchRequestTransfer;
 use Generated\Shared\Transfer\FactFinderApiSuggestRequestTransfer;
 use Generated\Shared\Transfer\FactFinderApiTrackingRequestTransfer;
 
-class FactFinderToFactFinderClientBridge implements FactFinderDemoToFactFinderClientInterface
+class FactFinderToFactFinderClientBridge implements FactFinderToFactFinderClientInterface
 {
 
     /**
