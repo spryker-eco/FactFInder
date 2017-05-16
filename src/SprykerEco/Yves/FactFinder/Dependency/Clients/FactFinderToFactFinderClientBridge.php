@@ -16,14 +16,14 @@ class FactFinderToFactFinderClientBridge implements FactFinderToFactFinderClient
 {
 
     /**
-     * @var \SprykerEco\Client\FactFinderApi\FactFinderClientInterface
+     * @var \SprykerEco\Client\FactFinderApi\FactFinderApiClientInterface
      */
     protected $factFinderClient;
 
     /**
      * FactFinderDemoToFactFinderClientBridge constructor.
      *
-     * @param \SprykerEco\Client\FactFinderApi\FactFinderClientInterface $factFinderClient
+     * @param \SprykerEco\Client\FactFinderApi\FactFinderApiClientInterface $factFinderClient
      */
     public function __construct($factFinderClient)
     {
