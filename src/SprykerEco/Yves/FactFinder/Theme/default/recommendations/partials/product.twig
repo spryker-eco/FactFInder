@@ -1,0 +1,13 @@
+<div class="callout js-product-container">
+    <a href="{{ detailsUrl }}" class="thumbnail __preview-image">
+        <img src="{{ imageUrl }}">
+    </a>
+    {% if idProductAbstract is defined %}
+        {{ spyProductGroupItems(idProductAbstract, '@FactFinder/recommendations/partials/product-group-items.twig') }}
+    {% endif %}
+    <p>
+        <strong>{{ name }}</strong><br>
+        {{ priceValue }}
+    </p>
+    <a class="button expanded" href="{{ detailsUrl }}">View &raquo;</a>
+</div>

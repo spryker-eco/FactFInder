@@ -12,7 +12,7 @@ use Spryker\Yves\Kernel\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * @method \SprykerEco\Yves\FactFinder\FactFinderDemoFactory getFactory()
+ * @method \SprykerEco\Yves\FactFinder\FactFinderFactory getFactory()
  */
 class SuggestionsController extends AbstractController
 {

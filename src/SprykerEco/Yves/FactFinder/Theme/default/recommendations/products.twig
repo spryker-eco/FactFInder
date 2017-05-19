@@ -1,0 +1,25 @@
+{% if productRecommendations %}
+<div class="row">
+    <div class="small-12 columns">
+        <div class="callout">
+            <h3>FACT-Finder recommendations</h3>
+            <div class="row align-spaced">
+                <div class="small-11 columns">
+                    <div class="carousel" data-component="carousel">
+                    {% for recommendation in productRecommendations %}
+
+                        {% include "@FactFinder/recommendations/partials/product.twig" with {
+                            detailsUrl: recommendation.fields.ProductURL,
+                            name: recommendation.fields.Name,
+                            priceValue: recommendation.fields.Price,
+                            imageUrl: recommendation.fields.ImageURL
+                        } %}
+
+                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
