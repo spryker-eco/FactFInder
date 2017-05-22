@@ -3,7 +3,7 @@
   "description": "FactFinder bundle",
   "license": "MIT",
   "require": {
-    "spryker-eco/fact-finder-sdk": "^0.1.0",
+    "spryker-eco/fact-finder-sdk": "@dev",
     "spryker/kernel": "^3.0.0",
     "spryker/symfony": "^3.0.0"
   },
