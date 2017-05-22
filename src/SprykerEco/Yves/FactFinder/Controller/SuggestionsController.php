@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Yves\FactFinder\Controller;
 
-use Generated\Shared\Transfer\FactFinderApiSuggestRequestTransfer;
+use Generated\Shared\Transfer\FactFinderSdkSuggestRequestTransfer;
 use Spryker\Yves\Kernel\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,7 +24,7 @@ class SuggestionsController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $factFinderSuggestRequestTransfer = new FactFinderApiSuggestRequestTransfer();
+        $factFinderSuggestRequestTransfer = new FactFinderSdkSuggestRequestTransfer();
         $query = $request->query->get('query', '*');
 
         $factFinderSuggestRequestTransfer->setQuery($query);

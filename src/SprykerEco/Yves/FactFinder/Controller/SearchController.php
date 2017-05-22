@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Yves\FactFinder\Controller;
 
-use Generated\Shared\Transfer\FactFinderApiSearchRequestTransfer;
+use Generated\Shared\Transfer\FactFinderSdkSearchRequestTransfer;
 use Spryker\Shared\Kernel\Store;
 use Spryker\Yves\Kernel\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +25,7 @@ class SearchController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $factFinderSearchRequestTransfer = new FactFinderApiSearchRequestTransfer();
+        $factFinderSearchRequestTransfer = new FactFinderSdkSearchRequestTransfer();
         $factFinderSearchRequestTransfer->setQuery($request->query->get('query', '*'));
         $factFinderSearchRequestTransfer->setPage($request->query->get('page'));
         $factFinderSearchRequestTransfer->setSortName($request->query->get('sortName'));

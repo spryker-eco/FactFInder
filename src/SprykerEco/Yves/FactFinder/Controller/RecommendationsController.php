@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Yves\FactFinder\Controller;
 
-use Generated\Shared\Transfer\FactFinderApiRecommendationRequestTransfer;
+use Generated\Shared\Transfer\FactFinderSdkRecommendationRequestTransfer;
 use Spryker\Yves\Kernel\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,7 +24,7 @@ class RecommendationsController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $factFinderRecommendationRequestTransfer = new FactFinderApiRecommendationRequestTransfer();
+        $factFinderRecommendationRequestTransfer = new FactFinderSdkRecommendationRequestTransfer();
         $factFinderRecommendationRequestTransfer->fromArray($request->query->all());
 
         $factFinderRecommendationsResponseTransfer = $this->getFactory()

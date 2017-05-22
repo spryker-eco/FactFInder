@@ -7,7 +7,7 @@
 
 namespace SprykerEco\Yves\FactFinder\Controller;
 
-use Generated\Shared\Transfer\FactFinderApiTrackingRequestTransfer;
+use Generated\Shared\Transfer\FactFinderSdkTrackingRequestTransfer;
 use Spryker\Yves\Kernel\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -24,7 +24,7 @@ class TrackController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $factFinderTrackingRequestTransfer = new FactFinderApiTrackingRequestTransfer();
+        $factFinderTrackingRequestTransfer = new FactFinderSdkTrackingRequestTransfer();
         $factFinderTrackingRequestTransfer->fromArray($request->query->all());
 
         $sessionId = $request->getSession()->getId();

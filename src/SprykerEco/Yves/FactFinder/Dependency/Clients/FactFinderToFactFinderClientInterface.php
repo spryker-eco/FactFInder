@@ -7,40 +7,40 @@
 
 namespace SprykerEco\Yves\FactFinder\Dependency\Clients;
 
-use Generated\Shared\Transfer\FactFinderApiRecommendationRequestTransfer;
-use Generated\Shared\Transfer\FactFinderApiSearchRequestTransfer;
-use Generated\Shared\Transfer\FactFinderApiSuggestRequestTransfer;
-use Generated\Shared\Transfer\FactFinderApiTrackingRequestTransfer;
+use Generated\Shared\Transfer\FactFinderSdkRecommendationRequestTransfer;
+use Generated\Shared\Transfer\FactFinderSdkSearchRequestTransfer;
+use Generated\Shared\Transfer\FactFinderSdkSuggestRequestTransfer;
+use Generated\Shared\Transfer\FactFinderSdkTrackingRequestTransfer;
 
 interface FactFinderToFactFinderClientInterface
 {
 
     /**
-     * @param \Generated\Shared\Transfer\FactFinderApiSearchRequestTransfer $factFinderSearchRequestTransfer
+     * @param \Generated\Shared\Transfer\FactFinderSdkSearchRequestTransfer $factFinderSearchRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\FactFinderApiSearchResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderSdkSearchResponseTransfer
      */
-    public function search(FactFinderApiSearchRequestTransfer $factFinderSearchRequestTransfer);
+    public function search(FactFinderSdkSearchRequestTransfer $factFinderSearchRequestTransfer);
 
     /**
-     * @param \Generated\Shared\Transfer\FactFinderApiRecommendationRequestTransfer $factFinderRecommendationRequestTransfer
+     * @param \Generated\Shared\Transfer\FactFinderSdkRecommendationRequestTransfer $factFinderRecommendationRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\FactFinderApiRecommendationResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderSdkRecommendationResponseTransfer
      */
-    public function getRecommendations(FactFinderApiRecommendationRequestTransfer $factFinderRecommendationRequestTransfer);
+    public function getRecommendations(FactFinderSdkRecommendationRequestTransfer $factFinderRecommendationRequestTransfer);
 
     /**
-     * @param \Generated\Shared\Transfer\FactFinderApiSuggestRequestTransfer $factFinderSuggestRequestTransfer
+     * @param \Generated\Shared\Transfer\FactFinderSdkSuggestRequestTransfer $factFinderSuggestRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\FactFinderApiSuggestResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderSdkSuggestResponseTransfer
      */
-    public function getSuggestions(FactFinderApiSuggestRequestTransfer $factFinderSuggestRequestTransfer);
+    public function getSuggestions(FactFinderSdkSuggestRequestTransfer $factFinderSuggestRequestTransfer);
 
     /**
-     * @param \Generated\Shared\Transfer\FactFinderApiTrackingRequestTransfer $factFinderTrackingRequestTransfer
+     * @param \Generated\Shared\Transfer\FactFinderSdkTrackingRequestTransfer $factFinderTrackingRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\FactFinderApiTrackingResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderSdkTrackingResponseTransfer
      */
-    public function track(FactFinderApiTrackingRequestTransfer $factFinderTrackingRequestTransfer);
+    public function track(FactFinderSdkTrackingRequestTransfer $factFinderTrackingRequestTransfer);
 
 }

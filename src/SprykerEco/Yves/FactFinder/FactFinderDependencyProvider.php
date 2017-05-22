@@ -37,7 +37,7 @@ class FactFinderDependencyProvider extends AbstractBundleDependencyProvider
     {
         $container[self::FACT_FINDER_CLIENT] = function () use ($container) {
             $factFinderClient = $container->getLocator()
-                ->factFinderApi()
+                ->factFinderSdk()
                 ->client();
 
             return new FactFinderToFactFinderClientBridge($factFinderClient);

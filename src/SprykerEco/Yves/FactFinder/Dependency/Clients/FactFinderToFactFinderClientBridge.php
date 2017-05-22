@@ -7,23 +7,23 @@
 
 namespace SprykerEco\Yves\FactFinder\Dependency\Clients;
 
-use Generated\Shared\Transfer\FactFinderApiRecommendationRequestTransfer;
-use Generated\Shared\Transfer\FactFinderApiSearchRequestTransfer;
-use Generated\Shared\Transfer\FactFinderApiSuggestRequestTransfer;
-use Generated\Shared\Transfer\FactFinderApiTrackingRequestTransfer;
+use Generated\Shared\Transfer\FactFinderSdkRecommendationRequestTransfer;
+use Generated\Shared\Transfer\FactFinderSdkSearchRequestTransfer;
+use Generated\Shared\Transfer\FactFinderSdkSuggestRequestTransfer;
+use Generated\Shared\Transfer\FactFinderSdkTrackingRequestTransfer;
 
 class FactFinderToFactFinderClientBridge implements FactFinderToFactFinderClientInterface
 {
 
     /**
-     * @var \SprykerEco\Client\FactFinderApi\FactFinderApiClientInterface
+     * @var \SprykerEco\Client\FactFinderSdk\FactFinderSdkClientInterface
      */
     protected $factFinderClient;
 
     /**
      * FactFinderDemoToFactFinderClientBridge constructor.
      *
-     * @param \SprykerEco\Client\FactFinderApi\FactFinderApiClientInterface $factFinderClient
+     * @param \SprykerEco\Client\FactFinderSdk\FactFinderSdkClientInterface $factFinderClient
      */
     public function __construct($factFinderClient)
     {
@@ -31,44 +31,44 @@ class FactFinderToFactFinderClientBridge implements FactFinderToFactFinderClient
     }
 
     /**
-     * @param \Generated\Shared\Transfer\FactFinderApiSearchRequestTransfer $factFinderSearchRequestTransfer
+     * @param \Generated\Shared\Transfer\FactFinderSdkSearchRequestTransfer $factFinderSearchRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\FactFinderApiSearchResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderSdkSearchResponseTransfer
      */
-    public function search(FactFinderApiSearchRequestTransfer $factFinderSearchRequestTransfer)
+    public function search(FactFinderSdkSearchRequestTransfer $factFinderSearchRequestTransfer)
     {
         return $this->factFinderClient
             ->search($factFinderSearchRequestTransfer);
     }
 
     /**
-     * @param \Generated\Shared\Transfer\FactFinderApiRecommendationRequestTransfer $factFinderRecommendationRequestTransfer
+     * @param \Generated\Shared\Transfer\FactFinderSdkRecommendationRequestTransfer $factFinderRecommendationRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\FactFinderApiRecommendationResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderSdkRecommendationResponseTransfer
      */
-    public function getRecommendations(FactFinderApiRecommendationRequestTransfer $factFinderRecommendationRequestTransfer)
+    public function getRecommendations(FactFinderSdkRecommendationRequestTransfer $factFinderRecommendationRequestTransfer)
     {
         return $this->factFinderClient
             ->getRecommendations($factFinderRecommendationRequestTransfer);
     }
 
     /**
-     * @param \Generated\Shared\Transfer\FactFinderApiSuggestRequestTransfer $factFinderSuggestRequestTransfer
+     * @param \Generated\Shared\Transfer\FactFinderSdkSuggestRequestTransfer $factFinderSuggestRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\FactFinderApiSuggestResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderSdkSuggestResponseTransfer
      */
-    public function getSuggestions(FactFinderApiSuggestRequestTransfer $factFinderSuggestRequestTransfer)
+    public function getSuggestions(FactFinderSdkSuggestRequestTransfer $factFinderSuggestRequestTransfer)
     {
         return $this->factFinderClient
             ->getSuggestions($factFinderSuggestRequestTransfer);
     }
 
     /**
-     * @param \Generated\Shared\Transfer\FactFinderApiTrackingRequestTransfer $factFinderTrackingRequestTransfer
+     * @param \Generated\Shared\Transfer\FactFinderSdkTrackingRequestTransfer $factFinderTrackingRequestTransfer
      *
-     * @return \Generated\Shared\Transfer\FactFinderApiTrackingResponseTransfer
+     * @return \Generated\Shared\Transfer\FactFinderSdkTrackingResponseTransfer
      */
-    public function track(FactFinderApiTrackingRequestTransfer $factFinderTrackingRequestTransfer)
+    public function track(FactFinderSdkTrackingRequestTransfer $factFinderTrackingRequestTransfer)
     {
         return $this->factFinderClient
             ->track($factFinderTrackingRequestTransfer);
