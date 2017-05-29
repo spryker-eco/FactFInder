@@ -26,10 +26,8 @@ class SearchController extends AbstractController
     public function indexAction(Request $request)
     {
         $factFinderSearchRequestTransfer = new FactFinderSdkSearchRequestTransfer();
-        $factFinderSearchRequestTransfer->setQuery($request->query->get('query', '*'));
-        $factFinderSearchRequestTransfer->setPage($request->query->get('page'));
-        $factFinderSearchRequestTransfer->setSortName($request->query->get('sortName'));
-        $factFinderSearchRequestTransfer->setSortPrice($request->query->get('sortPrice'));
+        $requestArray = $request->query->all();
+        $factFinderSearchRequestTransfer->setRequest($requestArray);
 
         $ffSearchResponseTransfer = $this->getFactory()
             ->getFactFinderClient()
@@ -39,8 +37,8 @@ class SearchController extends AbstractController
             'searchResponse' => $ffSearchResponseTransfer,
             'pagingRote' => 'fact-finder',
             'lang' => Store::getInstance()->getCurrentLanguage(),
-            'query' => $factFinderSearchRequestTransfer->getQuery(),
-            'page' => $factFinderSearchRequestTransfer->getPage(),
+            'query' => isset($requestArray['query']) ? $requestArray['query'] : '',
+            'page' => isset($requestArray['page']) ? $requestArray['page'] : '',
         ];
     }
 

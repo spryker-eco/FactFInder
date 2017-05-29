@@ -11,8 +11,35 @@ var suggestionsBox = require('./fact-finder-suggestions-box');
 var track = require('./fact-finder-track');
 
 function init(config) {
-    $("#ffSortButton").click(function(){
-        window.location = $("#ffSortSelect").val();
+    $('.fact-finder-sort-action').click(function(event){
+        event.preventDefault();
+
+        var url = $('.fact-finder-sort-options').val();
+        var productsPerPage = $('.fact-finder-products-per-page').val();
+
+        window.location = url + '&productsPerPage=' + productsPerPage;
+    });
+
+    $('.fact-finder-range-filter').click(function(event){
+        event.preventDefault();
+
+        var form = $(this).parents('form:first');
+        var minimum = $(form).find("input[name='min']").val();
+        var maximum = $(form).find("input[name='max']").val();
+        var previousMinimum = $(form).find("input[name='min']").attr('data-old-value');
+        var previousMaximum = $(form).find("input[name='max']").attr('data-old-value');
+        var formAction = $(form).attr('action');
+        var filterName = $(form).data('filter-name');
+
+        formAction = formAction.replace(
+            filterName + '=' + previousMinimum + '-' + previousMaximum,
+            filterName + '=' + minimum + '-' + maximum
+        );
+
+        $(form).attr('action', formAction);
+        $(form).find("input[name='min']").attr('data-old-value', minimum);
+        $(form).find("input[name='max']").attr('data-old-value', maximum);
+        window.location = formAction;
     });
 
     $("#ffSearchInput").keyup(function(e){

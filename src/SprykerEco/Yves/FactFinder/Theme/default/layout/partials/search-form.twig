@@ -1,4 +1,16 @@
-<form action="/fact-finder" autocomplete="off">
+{% if factFinderSearchUri is not defined -%}
+    {% set factFinderSearchUri = '/fact-finder' %}
+{% endif %}
+
+{% if factFinderCategoryUri is not defined -%}
+    {% set factFinderCategoryUri = '/fact-finder' %}
+{% endif %}
+
+<form action={{ factFinderSearchUri }} autocomplete="off"
+      id="fact-finder-search-input"
+      data-search-uri="{{ factFinderSearchUri }}"
+      data-category-uri="{{ factFinderCategoryUri }}"
+>
     <div class="input-group __no-margin-bottom">
         <input name="query" type="text" class="input-group-field" placeholder="{{ 'global.search' | trans }}"
                value="{{ app.request.get('query') }}" id="ffSearchInput">

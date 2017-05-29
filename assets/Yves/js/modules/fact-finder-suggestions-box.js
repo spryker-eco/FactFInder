@@ -9,12 +9,10 @@ var $ = require('jquery');
 
 var suggestionsBox = {
 
-    allProductsUrl: '/fact-finder?query=',
-    categoriesUrl: '/fact-finder?filterCategory=',
     cursorPosition: -1,
     hidden: true,
 
-    prepareSuggestionsBlock: function (objectsList)     {
+    prepareSuggestionsBlock: function (queryText, objectsList)     {
         this.clearProductSuggestionsBlock();
         this.clearCategoriesSuggestionsBlock();
         this.resetCursorPosition();
@@ -24,7 +22,7 @@ var suggestionsBox = {
                 var productTemplateHtml = suggestionsBox.getProductTemplateHtml(item);
                 $('.ff-products').append(productTemplateHtml);
             } else {
-                var categoryTemplateHtml = suggestionsBox.getCategoryTemplateHtml(item);
+                var categoryTemplateHtml = suggestionsBox.getCategoryTemplateHtml(item, queryText);
                 $('.ff-categories').append(categoryTemplateHtml);
             }
         });
@@ -44,11 +42,11 @@ var suggestionsBox = {
         return productTemplateHtml;
     },
 
-    getCategoryTemplateHtml: function (item) {
+    getCategoryTemplateHtml: function (item, queryText) {
         var categoryTemplate = $('#suggestions-box-row').clone();
         var categoryTemplateHtml = $(categoryTemplate).prop('innerHTML');
 
-        item.url = this.categoriesUrl + encodeURIComponent(item.label);
+        item.url = this.getCategoriesUrl(queryText) + encodeURIComponent(item.label);
 
         $.each(item, function (index, value) {
             categoryTemplateHtml = categoryTemplateHtml.replace(':' + index, value);
@@ -77,7 +75,7 @@ var suggestionsBox = {
 
     setSeeAllProductsLink: function () {
         var searchValue = $('#ffSearchInput').val();
-        $('.ff-all-products').attr('href', this.allProductsUrl + searchValue);
+        $('.ff-all-products').attr('href', this.getAllProductsUrl() + searchValue);
     },
 
     resetCursorPosition: function () {
@@ -121,6 +119,18 @@ var suggestionsBox = {
                 window.location.href = url;
             }
         }
+    },
+
+    getCategoriesUrl: function (queryText) {
+        var uri = $('#fact-finder-search-input').data('category-uri');
+
+        return uri + '?query=' + queryText + '&filterCategory=';
+    },
+
+    getAllProductsUrl: function () {
+        var uri = $('#fact-finder-search-input').data('search-uri');
+
+        return uri + '?query=';
     }
 
 };

@@ -7,40 +7,50 @@
 
 {% spaceless %}
     <ul class="pagination __no-margin-bottom" role="navigation">
-        {% if currentPage > 1 %}
-            <li class="pagination-previous"><a href="{{ path(paginationPath, parameters|merge({page: currentPage-1})) }}">{{ 'pagination.previous' | trans }}</a></li>
+        {% if currentPage.pageNumber > 1 %}
+            {% set currentPageUri = 'page=' ~ maxPage.pageNumber %}
+            {% set newPageUri = 'page=' ~ (currentPage.pageNumber - 1) %}
+            <li class="pagination-previous"><a href="{{ maxPage.item.url | replace({(currentPageUri): newPageUri}) }}">{{ 'pagination.previous' | trans }}</a></li>
 
-            {% for i in range(1, extremePagesLimit) if ( i < currentPage - nearbyPagesLimit ) %}
-                <li><a href="{{ path(paginationPath, parameters|merge({page: i})) }}">{{ i }}</a></li>
+            {% for i in range(1, extremePagesLimit) if ( i < currentPage.pageNumber - nearbyPagesLimit ) %}
+                {% set currentPageUri = 'page=' ~ maxPage.pageNumber %}
+                {% set newPageUri = 'page=' ~ i %}
+                <li><a href="{{ maxPage.item.url | replace({(currentPageUri): newPageUri}) }}">{{ i }}</a></li>
             {% endfor %}
 
-            {% if extremePagesLimit + 1 < currentPage - nearbyPagesLimit %}
+            {% if extremePagesLimit + 1 < currentPage.pageNumber - nearbyPagesLimit %}
                 <li class="ellipsis" aria-hidden="true"></li>
             {% endif %}
 
-            {% for i in range(currentPage-nearbyPagesLimit, currentPage-1) if ( i > 0 ) %}
-                <li><a href="{{ path(paginationPath, parameters|merge({page: i})) }}">{{ i }}</a></li>
+            {% for i in range(currentPage.pageNumber - nearbyPagesLimit, currentPage.pageNumber - 1) if ( i > 0 ) %}
+                {% set currentPageUri = 'page=' ~ maxPage.pageNumber %}
+                {% set newPageUri = 'page=' ~ i %}
+                <li><a href="{{ maxPage.item.url | replace({(currentPageUri): newPageUri}) }}">{{ i }}</a></li>
             {% endfor %}
         {% elseif showAlwaysFirstAndLast %}
             <li class="pagination-previous disabled">{{ 'pagination.previous' | trans }}</li>
         {% endif %}
 
-        <li><a href="{{ path(paginationPath, parameters|merge({ page: currentPage })) }}" class="current">{{ currentPage }}</a></li>
+        <li><a href="{{ currentPage.item.url }}" class="current">{{ currentPage.item.label }}</a></li>
 
-        {% if currentPage < maxPage %}
-            {% for i in range(currentPage+1, currentPage + nearbyPagesLimit) if ( i <= maxPage ) %}
-                <li><a href="{{ path(paginationPath, parameters|merge({page: i})) }}">{{ i }}</a></li>
+        {% if currentPage.pageNumber < maxPage.pageNumber %}
+            {% for i in range(currentPage.pageNumber + 1, currentPage.pageNumber + nearbyPagesLimit) if ( i <= maxPage.pageNumber ) %}
+                {% set currentPageUri = 'page=' ~ maxPage.pageNumber %}
+                {% set newPageUri = 'page=' ~ i %}
+                <li><a href="{{ maxPage.item.url | replace({(currentPageUri): newPageUri}) }}">{{ i }}</a></li>
             {% endfor %}
 
-            {% if  (maxPage - extremePagesLimit) > (currentPage + nearbyPagesLimit) %}
+            {% if  (maxPage.pageNumber - extremePagesLimit) > (currentPage.pageNumber + nearbyPagesLimit) %}
                 <li class="ellipsis" aria-hidden="true"></li>
             {% endif %}
 
-            {% for i in range(maxPage - extremePagesLimit+1, maxPage) if ( i > currentPage + nearbyPagesLimit ) %}
-                <li><a href="{{ path(paginationPath, parameters|merge({page: i})) }}">{{ i }}</a></li>
+            {% for i in range(maxPage.pageNumber - extremePagesLimit + 1, maxPage.pageNumber) if ( i > currentPage.pageNumber + nearbyPagesLimit ) %}
+                {% set currentPageUri = 'page=' ~ maxPage.pageNumber %}
+                {% set newPageUri = 'page=' ~ i %}
+                <li><a href="{{ maxPage.item.url | replace({(currentPageUri): newPageUri}) }}">{{ i }}</a></li>
             {% endfor %}
 
-            <li class="pagination-next"><a href="{{ path(paginationPath, parameters|merge({page: currentPage+1})) }}">{{ 'pagination.next' | trans }}</a></li>
+            <li class="pagination-next"><a href="{{ nextPage.item.url }}">{{ 'pagination.next' | trans }}</a></li>
         {% elseif showAlwaysFirstAndLast %}
             <li class="pagination-next disabled">{{ 'pagination.next' | trans }}</li>
         {% endif %}

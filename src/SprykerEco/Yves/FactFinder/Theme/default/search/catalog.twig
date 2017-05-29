@@ -7,17 +7,23 @@
             </label>
         </div>
         <div class="__toggler-target">
+            {% set afterSearchNavigation = searchResponse.getAfterSearchNavigation %}
             {% include '@FactFinder/layout/catalog/filters.twig' with {
-            afterSearchNavigation: searchResponse.getAfterSearchNavigation
+                afterSearchNabigation: afterSearchNavigation
             } %}
         </div>
     </div>
 
     <div class="small-12 medium-12 large-8 xlarge-9 columns">
 
-        {% include '@FactFinder/layout/partials/sort.twig' %}
+        {% include '@FactFinder/layout/partials/sort.twig' with {
+            factFinder: searchResponse
+        } %}
 
-        {% include '@FactFinder/search/partials/pagination.twig' %}
+        {% include '@FactFinder/search/partials/pagination.twig' with {
+            factFinder: searchResponse,
+            showAlwaysFirstAndLast: true
+        } %}
 
         <div class="row">
             {% for record in searchResponse.result.records %}
@@ -28,14 +34,14 @@
                         priceValue: record.fields.Price,
                         imageUrl: record.fields.ImageURL,
                         trackInfo: {
-                        id: record.id,
-                        event: 'click',
-                        query: query,
-                        pos: record.position,
-                        origPos: record.position,
-                        page: page != null ? page : 1,
-                        origPageSize: searchResponse.result.records | length
-                    }
+                            id: record.id,
+                            event: 'click',
+                            query: query,
+                            pos: record.position,
+                            origPos: record.position,
+                            page: page != null ? page : 1,
+                            origPageSize: searchResponse.result.records | length
+                        }
                     } %}
                 </div>
             {% endfor %}

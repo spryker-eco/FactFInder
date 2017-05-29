@@ -36,7 +36,7 @@ var factFinderSuggestions = {
         var objectsList = this.prepareObjectsList(searchResult);
 
         if (objectsList.length > 0) {
-            suggestionsBox.prepareSuggestionsBlock(objectsList);
+            suggestionsBox.prepareSuggestionsBlock(this.queryText, objectsList);
         }
     },
 

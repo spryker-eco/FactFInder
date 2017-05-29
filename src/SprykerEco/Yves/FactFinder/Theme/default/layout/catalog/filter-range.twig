@@ -1,25 +1,44 @@
-<div class="row">
-    <div class="small-12 columns">
-        <div class="row">
-            <div class="small-6 columns">
-               <label>
-                   {{ "catalog.filter.pricerangeFrom" | trans }}
-                   <input type="number" name="{{ filterName }}[min]" value="{{ min }}" />
-               </label>
-            </div>
-            <div class="small-6 columns">
-                <label>
-                    {{ "catalog.filter.pricerangeTo" | trans }}
-                    <input type="number" name="{{ filterName }}[max]" value="{{ max }}" />
-                </label>
-            </div>
-        </div>
+<form method="GET" action="{{ filter.item.url }}" data-filter-name="filter{{ filterGroup.name }}">
+    <div class="callout">
+        <h3>{{ filterGroup.name }}</h3>
         <div class="row">
             <div class="small-12 columns">
-                <button type="submit" class="button expanded __no-margin-bottom">
-                    <i class="fa fa-filter"></i> {{ 'catalog.filter.button' | trans }}
-                </button>
+                <div class="row">
+                    <div class="small-6 columns">
+                        <label>
+                            {{ "catalog.filter.rangeFrom"|trans }}
+                            <input type="number" name="min"
+                                   value="{{ filter.selectedMinimum }}"
+                                   required="required"
+                                   min="{{ filter.absoluteMinimum }}"
+                                   max="{{ filter.absoluteMaximum }}"
+                                   step="0.01"
+                                   data-old-value="{{ filter.selectedMinimum }}"
+                            />
+                        </label>
+                    </div>
+                    <div class="small-6 columns">
+                        <label>
+                            {{ "catalog.filter.rangeTo"|trans }}
+                            <input type="number" name="max"
+                                   value="{{ filter.selectedMaximum }}"
+                                   required="required"
+                                   min="{{ filter.absoluteMinimum }}"
+                                   max="{{ filter.absoluteMaximum }}"
+                                   step="0.01"
+                                   data-old-value="{{ filter.selectedMaximum }}"
+                            />
+                        </label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="small-12 columns">
+                        <button type="submit" class="button hollow expanded __no-margin-bottom fact-finder-range-filter">
+                            <i class="fa fa-filter"></i> {{ 'catalog.filter.button' | trans }}
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</form>
