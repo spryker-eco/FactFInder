@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block breadcrumbItems %}
-    {% for breadcrumb in searchResponse.breadCrumbs %}
-        <li>{{ breadcrumb.item.label }}</li>
-    {% endfor %}
+    {% include "@FactFinder/search/partials/breadcrumbs.twig" with {
+        factFinder: searchResponse
+    } %}
 {% endblock %}
