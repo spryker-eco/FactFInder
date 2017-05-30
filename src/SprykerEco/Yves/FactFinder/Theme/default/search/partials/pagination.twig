@@ -1,4 +1,4 @@
-{% if factFinder is defined and factFinder.paging.pageCount > 1 %}
+{% if factFinder is defined and factFinder.paging.pageCount is defined and factFinder.paging.pageCount > 1 %}
     <div class="callout text-center">
         {% include '@FactFinder/layout/partials/pagination.twig' with {
             currentPage: factFinder.paging.currentPage,

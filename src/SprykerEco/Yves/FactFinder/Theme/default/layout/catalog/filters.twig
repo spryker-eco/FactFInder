@@ -1,22 +1,26 @@
-{% for filterGroup in afterSearchNavigation.filterGroups %}
-    {% if filterGroup.isRegularStyle == true %}
-        {% include '@FactFinder/layout/catalog/filter-list.twig' with {
-            filterGroup: filterGroup
-        } %}
-    {% endif %}
+{% if afterSearchNavigation.filterGroups is defined %}
 
-    {% if filterGroup.isSliderStyle == true %}
-        {% include '@FactFinder/layout/catalog/filter-range.twig' with {
-            filter: filterGroup.filters[0],
-            filterGroup: filterGroup
-        } %}
-    {% endif %}
+    {% for filterGroup in afterSearchNavigation.filterGroups %}
+        {% if filterGroup.isRegularStyle == true %}
+            {% include '@FactFinder/layout/catalog/filter-list.twig' with {
+                filterGroup: filterGroup
+            } %}
+        {% endif %}
 
-    {% if filterGroup.isTreeStyle == true %}
-        {% include '@FactFinder/layout/catalog/filter-tree.twig' with {
-            filter: filterGroup.filters[0],
-            filterGroup: filterGroup
-        } %}
-    {% endif %}
-{% endfor %}
+        {% if filterGroup.isSliderStyle == true %}
+            {% include '@FactFinder/layout/catalog/filter-range.twig' with {
+                filter: filterGroup.filters[0],
+                filterGroup: filterGroup
+            } %}
+        {% endif %}
+
+        {% if filterGroup.isTreeStyle == true %}
+            {% include '@FactFinder/layout/catalog/filter-tree.twig' with {
+                filter: filterGroup.filters[0],
+                filterGroup: filterGroup
+            } %}
+        {% endif %}
+    {% endfor %}
+
+{% endif %}
 
