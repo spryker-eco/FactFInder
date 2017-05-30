@@ -6,6 +6,12 @@
     {% set factFinderCategoryUri = '/fact-finder' %}
 {% endif %}
 
+{% if app.request.get('query') is defined and app.request.get('query') != '*' %}
+    {% set searchString = app.request.get('query') %}
+{% else %}
+    {% set searchString = '' %}
+{% endif %}
+
 <form action={{ factFinderSearchUri }} autocomplete="off"
       id="fact-finder-search-input"
       data-search-uri="{{ factFinderSearchUri }}"
@@ -13,7 +19,7 @@
 >
     <div class="input-group __no-margin-bottom">
         <input name="query" type="text" class="input-group-field" placeholder="{{ 'global.search' | trans }}"
-               value="{{ app.request.get('query') }}" id="ffSearchInput">
+               value="{{ searchString }}" id="ffSearchInput">
 
         <div class="input-group-button">
             <button type="submit" class="button"><i class="fa fa-search"></i></button>

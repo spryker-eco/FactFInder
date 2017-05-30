@@ -16,10 +16,6 @@ var factFinderTrack = {
             return false;
         }
 
-        console.log(queryData);
-
-        console.log(this.buildUrl(queryData));
-
         $.ajax({
             type: 'GET',
             url: this.buildUrl(queryData),

@@ -8,10 +8,10 @@
                         <label>
                             {{ "catalog.filter.rangeFrom"|trans }}
                             <input type="number" name="min"
-                                   value="{{ filter.selectedMinimum }}"
+                                   value="{{ filter.selectedMinimum / 100 }}"
                                    required="required"
-                                   min="{{ filter.absoluteMinimum }}"
-                                   max="{{ filter.absoluteMaximum }}"
+                                   min="{{ filter.absoluteMinimum / 100 }}"
+                                   max="{{ filter.absoluteMaximum / 100 }}"
                                    step="0.01"
                                    data-old-value="{{ filter.selectedMinimum }}"
                             />
@@ -21,10 +21,10 @@
                         <label>
                             {{ "catalog.filter.rangeTo"|trans }}
                             <input type="number" name="max"
-                                   value="{{ filter.selectedMaximum }}"
+                                   value="{{ filter.selectedMaximum / 100 }}"
                                    required="required"
-                                   min="{{ filter.absoluteMinimum }}"
-                                   max="{{ filter.absoluteMaximum }}"
+                                   min="{{ filter.absoluteMinimum / 100 }}"
+                                   max="{{ filter.absoluteMaximum / 100 }}"
                                    step="0.01"
                                    data-old-value="{{ filter.selectedMaximum }}"
                             />

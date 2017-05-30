@@ -33,7 +33,7 @@ function init(config) {
 
         formAction = formAction.replace(
             filterName + '=' + previousMinimum + '-' + previousMaximum,
-            filterName + '=' + minimum + '-' + maximum
+            filterName + '=' + minimum * 100 + '-' + maximum * 100
         );
 
         $(form).attr('action', formAction);
@@ -69,7 +69,7 @@ function init(config) {
         suggestionsBox.showSuggestionsBox(false);
     });
 
-    $(document).on('click','.click-track',function(event) {
+    $(document).on('click','.fact-finder-track', function(event) {
         var data = $(event.currentTarget).data('tracking');
         track.query(data);
     });
