@@ -45,8 +45,15 @@ var suggestionsBox = {
     getCategoryTemplateHtml: function (item, queryText) {
         var categoryTemplate = $('#suggestions-box-row').clone();
         var categoryTemplateHtml = $(categoryTemplate).prop('innerHTML');
+        var sourceField = '';
 
-        item.url = this.getCategoriesUrl(queryText) + encodeURIComponent(item.label);
+        if (item.attributes.sourceField !== undefined) {
+            sourceField = item.attributes.sourceField;
+        }
+        var categoryUrl = this.getCategoriesUrl(queryText);
+        categoryUrl = categoryUrl.replace('{sourceField}', sourceField);
+
+        item.url = categoryUrl + encodeURIComponent(item.label);
 
         $.each(item, function (index, value) {
             categoryTemplateHtml = categoryTemplateHtml.replace(':' + index, value);
@@ -124,7 +131,7 @@ var suggestionsBox = {
     getCategoriesUrl: function (queryText) {
         var uri = $('#fact-finder-search-input').data('category-uri');
 
-        return uri + '?query=' + queryText + '&filterCategory=';
+        return uri + '?query=' + queryText + '&filter{sourceField}=';
     },
 
     getAllProductsUrl: function () {
