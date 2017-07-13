@@ -20,6 +20,13 @@
                 filterGroup: filterGroup
             } %}
         {% endif %}
+
+        {% if filterGroup.isMultiSelectStyle == true %}
+            {% include '@FactFinder/layout/catalog/filter-multi-select.twig' with {
+            filter: filterGroup.filters[0],
+            filterGroup: filterGroup
+            } %}
+        {% endif %}
     {% endfor %}
 
 {% endif %}
