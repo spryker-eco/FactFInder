@@ -64,6 +64,7 @@ class FactFinderRecommendationsTwigServiceProvider extends AbstractPlugin implem
                 $templatePath,
                 [
                     'productRecommendations' => $recommendationsDataProvider->buildTemplateData($params),
+                    'params' => $params
                 ]
             );
         }, $options);
@@ -76,7 +77,7 @@ class FactFinderRecommendationsTwigServiceProvider extends AbstractPlugin implem
      * and should be used for "dynamic" configuration (whenever
      * a service must be requested).
      *
-     * @param Application $app
+     * @param \Silex\Application $app
      *
      * @return void
      */
