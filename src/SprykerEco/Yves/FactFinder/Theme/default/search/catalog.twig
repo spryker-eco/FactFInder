@@ -50,6 +50,10 @@
 
         {% include '@FactFinder/search/partials/pagination.twig' %}
 
+        {% include '@FactFinder/search/partials/feedback.twig' with {
+            query: query,
+        } %}
+
     </div>
 </div>
 

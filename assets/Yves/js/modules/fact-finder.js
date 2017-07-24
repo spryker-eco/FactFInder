@@ -73,6 +73,23 @@ function init(config) {
         var data = $(event.currentTarget).data('tracking');
         track.query(data);
     });
+
+    $(document).on('click','.fact-finder-feedback-send', function(event) {
+        event.preventDefault();
+
+        var query = $('.fact-finder-feedback-query').val();
+        var positive = $('.fact-finder-feedback-positive').val();
+        var message = $('.fact-finder-feedback-message').val();
+        var data = {
+            "id": "none",
+            "event": "feedback",
+            "query": query,
+            "positive": positive,
+            "message": message
+        };
+
+        track.query(data);
+    });
 }
 
 module.exports = {
