@@ -48,6 +48,12 @@
             {% endfor %}
         </div>
 
+        {% if searchResponse.campaignIterator.hasRedirect %}
+            {% include '@FactFinder/campaigns/campaigns.twig' with {
+                campaigns: searchResponse.campaignIterator.campaigns,
+            } %}
+        {% endif %}
+
         {% include '@FactFinder/search/partials/pagination.twig' %}
 
         {% include '@FactFinder/search/partials/feedback.twig' with {

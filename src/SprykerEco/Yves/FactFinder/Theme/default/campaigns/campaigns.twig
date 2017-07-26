@@ -1,0 +1,13 @@
+<div class="callout">
+    <div class="row">
+        <div class="small-12 columns">
+            {% for campaign in campaigns %}
+                {% if campaign.hasRedirect %}
+                    {% include '@FactFinder/campaigns/partials/redirect.twig' with {
+                        campaign: campaign,
+                    } %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
