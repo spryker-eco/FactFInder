@@ -44,6 +44,17 @@ class FactFinderRecommendationsTwigServiceProvider extends AbstractPlugin implem
                 return $twig;
             })
         );
+
+        $app['twig'] = $app->share(
+            $app->extend('twig', function (Twig_Environment $twig) {
+                $twig->addFunction(
+                    'fact_finder_product_campaigns',
+                    $this->createProductCampaignsFunction($twig)
+                );
+
+                return $twig;
+            })
+        );
     }
 
     /**
@@ -64,7 +75,31 @@ class FactFinderRecommendationsTwigServiceProvider extends AbstractPlugin implem
                 $templatePath,
                 [
                     'productRecommendations' => $recommendationsDataProvider->buildTemplateData($params),
-                    'params' => $params
+                    'params' => $params,
+                ]
+            );
+        }, $options);
+    }
+
+    /**
+     * @param \Twig_Environment $twig
+     *
+     * @return \Twig_SimpleFunction
+     */
+    protected function createProductCampaignsFunction(Twig_Environment $twig)
+    {
+        $options = ['is_safe' => ['html']];
+
+        return new Twig_SimpleFunction('fact_finder_product_campaigns', function (array $params, $templatePath) use ($twig) {
+
+            $productCampaignsDataProvider = $this->getFactory()
+                ->createProductCampaignsDataProvider();
+
+            return $twig->render(
+                $templatePath,
+                [
+                    'campaigns' => $productCampaignsDataProvider->buildTemplateData($params),
+                    'params' => $params,
                 ]
             );
         }, $options);

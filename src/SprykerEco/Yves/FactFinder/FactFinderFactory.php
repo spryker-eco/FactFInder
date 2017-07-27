@@ -9,6 +9,7 @@ namespace SprykerEco\Yves\FactFinder;
 
 use Spryker\Shared\Application\ApplicationConstants;
 use Spryker\Yves\Kernel\AbstractFactory;
+use SprykerEco\Yves\FactFinder\DataProvider\ProductCampaignsDataProvider;
 use SprykerEco\Yves\FactFinder\DataProvider\RecommendationsDataProvider;
 use SprykerEco\Yves\FactFinder\Form\SearchResultFeedbackForm;
 
@@ -29,6 +30,16 @@ class FactFinderFactory extends AbstractFactory
     public function createRecommendationsDataProvider()
     {
         return new RecommendationsDataProvider(
+            $this->getFactFinderClient()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Yves\FactFinder\DataProvider\ProductCampaignsDataProviderInterface
+     */
+    public function createProductCampaignsDataProvider()
+    {
+        return new ProductCampaignsDataProvider(
             $this->getFactFinderClient()
         );
     }

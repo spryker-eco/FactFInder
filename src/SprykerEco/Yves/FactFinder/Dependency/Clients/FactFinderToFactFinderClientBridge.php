@@ -7,6 +7,7 @@
 
 namespace SprykerEco\Yves\FactFinder\Dependency\Clients;
 
+use Generated\Shared\Transfer\FactFinderSdkProductCampaignRequestTransfer;
 use Generated\Shared\Transfer\FactFinderSdkRecommendationRequestTransfer;
 use Generated\Shared\Transfer\FactFinderSdkSearchRequestTransfer;
 use Generated\Shared\Transfer\FactFinderSdkSuggestRequestTransfer;
@@ -72,6 +73,17 @@ class FactFinderToFactFinderClientBridge implements FactFinderToFactFinderClient
     {
         return $this->factFinderClient
             ->track($factFinderTrackingRequestTransfer);
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\FactFinderSdkProductCampaignRequestTransfer $factFinderSdkProductCampaignRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\FactFinderSdkProductCampaignResponseTransfer
+     */
+    public function getProductCampaigns(FactFinderSdkProductCampaignRequestTransfer $factFinderSdkProductCampaignRequestTransfer)
+    {
+        return $this->factFinderClient
+            ->getProductCampaigns($factFinderSdkProductCampaignRequestTransfer);
     }
 
 }
