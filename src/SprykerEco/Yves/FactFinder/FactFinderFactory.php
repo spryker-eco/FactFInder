@@ -11,6 +11,7 @@ use Spryker\Shared\Application\ApplicationConstants;
 use Spryker\Yves\Kernel\AbstractFactory;
 use SprykerEco\Yves\FactFinder\DataProvider\ProductCampaignsDataProvider;
 use SprykerEco\Yves\FactFinder\DataProvider\RecommendationsDataProvider;
+use SprykerEco\Yves\FactFinder\DataProvider\ShoppingCartCampaignsDataProvider;
 use SprykerEco\Yves\FactFinder\Form\SearchResultFeedbackForm;
 
 class FactFinderFactory extends AbstractFactory
@@ -40,6 +41,16 @@ class FactFinderFactory extends AbstractFactory
     public function createProductCampaignsDataProvider()
     {
         return new ProductCampaignsDataProvider(
+            $this->getFactFinderClient()
+        );
+    }
+
+    /**
+     * @return \SprykerEco\Yves\FactFinder\DataProvider\ShoppingCartCampaignsDataProvider
+     */
+    public function createShoppingCartCampaignsDataProvider()
+    {
+        return new ShoppingCartCampaignsDataProvider(
             $this->getFactFinderClient()
         );
     }
