@@ -1,0 +1,11 @@
+{% for campaign in campaigns %}
+    {% if campaign.feedback and feedbackBlockPositionId is defined %}
+        {% for id,text in campaign.feedback %}
+            {% if id and id == feedbackBlockPositionId %}
+                <div class="callout">
+                    {{ text|raw }}
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endfor %}

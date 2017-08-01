@@ -31,6 +31,12 @@
             {% block headerMain %}
                 <div class="row">
                     <div class="small-12 columns">
+
+                        {% include '@FactFinder/campaigns/partials/feedback.twig' with {
+                            campaigns: searchResponse.campaignIterator.campaigns,
+                            feedbackBlockPositionId: 'above searchbar',
+                        } %}
+
                         <div class="callout">
                             <div class="row align-middle align-justify">
                                 <div class="small-7 large-6 columns">
@@ -52,7 +58,17 @@
                             </div>
                         </div>
 
+                        {% include '@FactFinder/campaigns/partials/feedback.twig' with {
+                            campaigns: searchResponse.campaignIterator.campaigns,
+                            feedbackBlockPositionId: 'below searchbar',
+                        } %}
+
                         {% include "@FactFinder/layout/partials/navigation.twig" %}
+
+                        {% include '@FactFinder/campaigns/partials/feedback.twig' with {
+                            campaigns: searchResponse.campaignIterator.campaigns,
+                            feedbackBlockPositionId: 'above breadcrumb',
+                        } %}
 
                         <div class="callout">
                             <nav role="navigation">
@@ -61,6 +77,11 @@
                                 </ul>
                             </nav>
                         </div>
+
+                        {% include '@FactFinder/campaigns/partials/feedback.twig' with {
+                            campaigns: searchResponse.campaignIterator.campaigns,
+                            feedbackBlockPositionId: 'below breadcrumb',
+                        } %}
 
                         {% include "@FactFinder/layout/partials/flash-messages.twig" %}
                     </div>

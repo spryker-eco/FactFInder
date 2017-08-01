@@ -25,6 +25,11 @@
             showAlwaysFirstAndLast: true
         } %}
 
+        {% include '@FactFinder/campaigns/partials/feedback.twig' with {
+            campaigns: searchResponse.campaignIterator.campaigns,
+            feedbackBlockPositionId: 'above search result',
+        } %}
+
         <div class="row">
             {% for record in searchResponse.result.records %}
                 <div class="small-12 medium-6 large-6 xlarge-4 columns">
@@ -48,7 +53,12 @@
             {% endfor %}
         </div>
 
-        {% if searchResponse.campaignIterator.hasRedirect %}
+        {% include '@FactFinder/campaigns/partials/feedback.twig' with {
+            campaigns: searchResponse.campaignIterator.campaigns,
+            feedbackBlockPositionId: 'below search result',
+        } %}
+
+        {% if searchResponse.campaignIterator.campaigns %}
             {% include '@FactFinder/campaigns/campaigns.twig' with {
                 campaigns: searchResponse.campaignIterator.campaigns,
             } %}
