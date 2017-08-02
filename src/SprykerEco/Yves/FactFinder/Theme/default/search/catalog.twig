@@ -25,6 +25,10 @@
             showAlwaysFirstAndLast: true
         } %}
 
+        {% include '@FactFinder/campaigns/partials/advisor.twig' with {
+            campaigns: searchResponse.campaignIterator.campaigns
+        } %}
+
         {% include '@FactFinder/campaigns/partials/feedback.twig' with {
             campaigns: searchResponse.campaignIterator.campaigns,
             feedbackBlockPositionId: 'above search result',
