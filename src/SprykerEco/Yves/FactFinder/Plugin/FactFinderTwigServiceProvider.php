@@ -17,7 +17,7 @@ use Twig_SimpleFunction;
 /**
  * @method \SprykerEco\Yves\FactFinder\FactFinderFactory getFactory()
  */
-class FactFinderRecommendationsTwigServiceProvider extends AbstractPlugin implements ServiceProviderInterface
+class FactFinderTwigServiceProvider extends AbstractPlugin implements ServiceProviderInterface
 {
 
     use LoggerTrait;
