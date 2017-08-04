@@ -62,11 +62,13 @@
             feedbackBlockPositionId: 'below search result',
         } %}
 
-        {% if searchResponse.campaignIterator.campaigns %}
-            {% include '@FactFinder/campaigns/campaigns.twig' with {
-                campaigns: searchResponse.campaignIterator.campaigns,
-            } %}
-        {% endif %}
+        {% include '@FactFinder/campaigns/partials/redirect.twig' with {
+            campaigns: searchResponse.campaignIterator.campaigns,
+        } %}
+
+        {% include '@FactFinder/campaigns/partials/pushed-products.twig' with {
+            campaigns: searchResponse.campaignIterator.campaigns,
+        } %}
 
         {% include '@FactFinder/search/partials/pagination.twig' %}
 
