@@ -1,0 +1,10 @@
+{% set activeQuestions =  campaign.activeQuestions %}
+{% for question in activeQuestions %}
+    <li>{{ question.text }}
+        <ul role="navigation">
+            {% for answer in question.advisorAnswers %}
+                <li><a href="{{ answer.url }}">{{ answer.text }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endfor %}
