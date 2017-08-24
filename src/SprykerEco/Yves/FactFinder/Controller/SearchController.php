@@ -35,7 +35,7 @@ class SearchController extends AbstractController
             ->getFactFinderClient()
             ->search($factFinderSearchRequestTransfer);
 
-        if (empty($ffSearchResponseTransfer->getResult())) {
+        if (!$ffSearchResponseTransfer->getResult()) {
             $this->addErrorMessage('Search is not available at the moment');
         }
 
