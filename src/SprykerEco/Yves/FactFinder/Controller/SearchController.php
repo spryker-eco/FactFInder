@@ -35,11 +35,6 @@ class SearchController extends AbstractController
             ->getFactFinderClient()
             ->search($factFinderSearchRequestTransfer);
 
-        if (is_null($ffSearchResponseTransfer->getResult())) {
-            $this->addErrorMessage("Fact finder is not available.");
-            $this->redirectResponseInternal(ApplicationControllerProvider::ROUTE_HOME);
-        }
-
         return [
             'searchResponse' => $ffSearchResponseTransfer,
             'pagingRote' => 'fact-finder',
