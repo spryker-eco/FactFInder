@@ -54,17 +54,6 @@ class FactFinderToFactFinderClientBridge implements FactFinderToFactFinderClient
     }
 
     /**
-     * @param \Generated\Shared\Transfer\FactFinderSdkProductCampaignRequestTransfer $factFinderSdkProductCampaignRequestTransfer
-     *
-     * @return \Generated\Shared\Transfer\FactFinderSdkProductCampaignResponseTransfer
-     */
-    public function getProductCampaigns(FactFinderSdkProductCampaignRequestTransfer $factFinderSdkProductCampaignRequestTransfer)
-    {
-        return $this->factFinderClient
-            ->getProductCampaigns($factFinderSdkProductCampaignRequestTransfer);
-    }
-
-    /**
      * @param \Generated\Shared\Transfer\FactFinderSdkSuggestRequestTransfer $factFinderSuggestRequestTransfer
      *
      * @return \Generated\Shared\Transfer\FactFinderSdkSuggestResponseTransfer
