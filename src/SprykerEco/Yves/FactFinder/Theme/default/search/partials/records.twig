@@ -1,0 +1,22 @@
+<div class="row">
+    {% for record in factFinder.result.records %}
+        <div class="small-12 medium-6 large-6 xlarge-4 columns">
+            {% include "@FactFinder/layout/catalog/product.twig" with {
+            detailsUrl: record.fields.ProductURL,
+            name: record.fields.Name,
+            priceValue: record.fields.Price,
+            imageUrl: record.fields.ImageURL,
+            trackInfo: {
+            id: record.id,
+            masterId: record.fields.MasterProductNumber,
+            event: 'click',
+            query: query,
+            pos: record.position,
+            origPos: record.position,
+            page: page != null ? page : 1,
+            origPageSize: factFinder.result.records | length
+            }
+            } %}
+        </div>
+    {% endfor %}
+</div>

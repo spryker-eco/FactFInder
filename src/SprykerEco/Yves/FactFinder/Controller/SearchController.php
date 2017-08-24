@@ -8,8 +8,10 @@
 namespace SprykerEco\Yves\FactFinder\Controller;
 
 use Generated\Shared\Transfer\FactFinderSdkSearchRequestTransfer;
+use Pyz\Yves\Application\Plugin\Provider\ApplicationControllerProvider;
 use Spryker\Shared\Kernel\Store;
 use Spryker\Yves\Kernel\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -32,6 +34,11 @@ class SearchController extends AbstractController
         $ffSearchResponseTransfer = $this->getFactory()
             ->getFactFinderClient()
             ->search($factFinderSearchRequestTransfer);
+
+        if (is_null($ffSearchResponseTransfer->getResult())) {
+            $this->addErrorMessage("Fact finder is not available.");
+            $this->redirectResponseInternal(ApplicationControllerProvider::ROUTE_HOME);
+        }
 
         return [
             'searchResponse' => $ffSearchResponseTransfer,
