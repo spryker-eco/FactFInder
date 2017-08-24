@@ -29,6 +29,28 @@
             factFinder: searchResponse,
             page: page
         } %}
+        
+        {% include '@FactFinder/campaigns/partials/advisor.twig' with {
+            campaigns: searchResponse.campaignIterator.campaigns
+        } %}
+
+        {% include '@FactFinder/campaigns/partials/feedback.twig' with {
+            campaigns: searchResponse.campaignIterator.campaigns,
+            feedbackBlockPositionId: 'above search result',
+        } %}
+
+        {% include '@FactFinder/campaigns/partials/feedback.twig' with {
+            campaigns: searchResponse.campaignIterator.campaigns,
+            feedbackBlockPositionId: 'below search result',
+        } %}
+
+        {% include '@FactFinder/campaigns/partials/redirect.twig' with {
+            campaigns: searchResponse.campaignIterator.campaigns,
+        } %}
+
+        {% include '@FactFinder/campaigns/partials/pushed-products.twig' with {
+            campaigns: searchResponse.campaignIterator.campaigns,
+        } %}
 
         {% include '@FactFinder/search/partials/pagination.twig' %}
 

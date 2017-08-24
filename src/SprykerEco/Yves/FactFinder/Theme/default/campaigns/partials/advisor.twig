@@ -1,0 +1,18 @@
+{% for campaign in campaigns %}
+    {% if campaign.activeQuestions %}
+        {% for activeQuestion in campaign.activeQuestions %}
+                <div class="callout">
+                    {{ activeQuestion.text }}
+                    {% if activeQuestion.advisorAnswers %}
+                        <ul>
+                            {% for answer in activeQuestion.advisorAnswers %}
+                                <li>
+                                    <a href="{{ answer.url }}">{{ answer.text }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+        {% endfor %}
+    {% endif %}
+{% endfor %}

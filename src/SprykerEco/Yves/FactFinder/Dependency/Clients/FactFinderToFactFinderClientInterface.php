@@ -51,6 +51,18 @@ interface FactFinderToFactFinderClientInterface
      */
     public function track(FactFinderSdkTrackingRequestTransfer $factFinderTrackingRequestTransfer);
 
+    /**
+     * @param \Generated\Shared\Transfer\FactFinderSdkProductCampaignRequestTransfer $factFinderSdkProductCampaignRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\FactFinderSdkProductCampaignResponseTransfer
+     */
+    public function getProductCampaigns(FactFinderSdkProductCampaignRequestTransfer $factFinderSdkProductCampaignRequestTransfer);
 
+    /**
+     * @param \Generated\Shared\Transfer\FactFinderSdkProductCampaignRequestTransfer $factFinderSdkProductCampaignRequestTransfer
+     *
+     * @return \Generated\Shared\Transfer\FactFinderSdkProductCampaignResponseTransfer
+     */
+    public function getShoppingCartCampaigns(FactFinderSdkProductCampaignRequestTransfer $factFinderSdkProductCampaignRequestTransfer);
 
 }
