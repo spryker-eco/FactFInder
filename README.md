@@ -1,4 +1,4 @@
-# FactFinder Bundle
+# FactFinder Module
 
 ## Installation
 

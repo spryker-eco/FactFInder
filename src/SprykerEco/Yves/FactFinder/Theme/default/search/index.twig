@@ -1,7 +1,9 @@
 {% extends "@FactFinder/layout/layout.twig" %}
 
 {% block content %}
-    {% include "@FactFinder/search/catalog.twig" %}
+    {% if searchResponse.result %}
+        {% include "@FactFinder/search/catalog.twig" %}
+    {% endif %}
 {% endblock %}
 
 {% block breadcrumbItems %}

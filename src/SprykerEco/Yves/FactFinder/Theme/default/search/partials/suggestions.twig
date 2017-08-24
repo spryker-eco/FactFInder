@@ -1,0 +1,13 @@
+{% if factFinder.result.foundRecordsCount == 0 %}
+    {% set campaigns = factFinder.campaignIterator.campaigns %}
+    <div class="callout">
+        <ul role="navigation">
+            {% for campaign in campaigns %}
+                {% include '@FactFinder/search/partials/campaign-questions.twig' with {
+                    campaign: campaign
+                } %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
+
