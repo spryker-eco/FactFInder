@@ -1,5 +1,5 @@
 <div class="callout js-product-container">
-    <a href="{{ detailsUrl }}" class="thumbnail __preview-image">
+    <a href="{{ detailsUrl }}" class="thumbnail __preview-image fact-finder-track" data-tracking="{{trackInfo|json_encode}}">
         <img src="{{ imageUrl }}">
     </a>
     {% if idProductAbstract is defined %}
@@ -9,5 +9,5 @@
         <strong>{{ name }}</strong><br>
         {{ priceValue }}
     </p>
-    <a class="button expanded" href="{{ detailsUrl }}">View &raquo;</a>
+    <a class="button expanded fact-finder-track" href="{{ detailsUrl }}" data-tracking="{{trackInfo|json_encode}}">View &raquo;</a>
 </div>

@@ -32,9 +32,14 @@
 
         {% include '@FactFinder/search/partials/pagination.twig' %}
 
+        {% include '@FactFinder/search/partials/feedback.twig' with {
+            query: query,
+        } %}
+
         {% include '@FactFinder/search/partials/suggestions.twig' with {
             factFinder: searchResponse
         } %}
+        
     </div>
 </div>
 

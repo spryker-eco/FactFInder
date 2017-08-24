@@ -7,8 +7,10 @@
 
 namespace SprykerEco\Yves\FactFinder;
 
+use Spryker\Shared\Application\ApplicationConstants;
 use Spryker\Yves\Kernel\AbstractFactory;
 use SprykerEco\Yves\FactFinder\DataProvider\RecommendationsDataProvider;
+use SprykerEco\Yves\FactFinder\Form\SearchResultFeedbackForm;
 
 class FactFinderFactory extends AbstractFactory
 {
@@ -29,6 +31,23 @@ class FactFinderFactory extends AbstractFactory
         return new RecommendationsDataProvider(
             $this->getFactFinderClient()
         );
+    }
+
+    /**
+     * @return \SprykerEco\Yves\FactFinder\Form\SearchResultFeedbackForm
+     */
+    public function createFeedbackForm()
+    {
+        return $this->getProvidedDependency(ApplicationConstants::FORM_FACTORY)
+            ->create($this->createFeedbackFormType());
+    }
+
+    /**
+     * @return \SprykerEco\Yves\FactFinder\Form\SearchResultFeedbackForm
+     */
+    protected function createFeedbackFormType()
+    {
+        return new SearchResultFeedbackForm();
     }
 
 }

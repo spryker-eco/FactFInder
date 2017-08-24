@@ -35,6 +35,9 @@ class SearchController extends AbstractController
             ->getFactFinderClient()
             ->search($factFinderSearchRequestTransfer);
 
+        $feedbackForm = $this->getFactory()
+            ->createFeedbackForm();
+      
         if (!$ffSearchResponseTransfer->getResult()) {
             $this->addErrorMessage('Search is not available at the moment');
         }
@@ -45,6 +48,7 @@ class SearchController extends AbstractController
             'lang' => Store::getInstance()->getCurrentLanguage(),
             'query' => isset($requestArray['query']) ? $requestArray['query'] : '',
             'page' => isset($requestArray['page']) ? $requestArray['page'] : '',
+            'feedbackForm' => $feedbackForm->createView(),
         ];
     }
 

@@ -64,6 +64,7 @@ class FactFinderRecommendationsTwigServiceProvider extends AbstractPlugin implem
                 $templatePath,
                 [
                     'productRecommendations' => $recommendationsDataProvider->buildTemplateData($params),
+                    'params' => $params
                 ]
             );
         }, $options);

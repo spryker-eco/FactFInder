@@ -12,7 +12,13 @@
                             detailsUrl: recommendation.fields.ProductURL,
                             name: recommendation.fields.Name,
                             priceValue: recommendation.fields.Price,
-                            imageUrl: recommendation.fields.ImageURL
+                            imageUrl: recommendation.fields.ImageURL,
+                            trackInfo: {
+                                id: recommendation.fields.ProductNumber,
+                                masterId: recommendation.fields.MasterProductNumber,
+                                mainId: params.mainId,
+                                event: 'recommendationClick'
+                            }
                         } %}
 
                     {% endfor %}

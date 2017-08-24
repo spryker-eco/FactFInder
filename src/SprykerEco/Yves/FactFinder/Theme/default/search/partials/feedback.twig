@@ -1,0 +1,22 @@
+{{ form_start(feedbackForm) }}
+<div class="callout">
+    <div class="row">
+        <div class="small-12 columns">
+            <h5>{{ feedbackForm.positive.vars.label | trans }}</h5>
+            <div class="input-group">
+                {{ form_widget(feedbackForm.positive, {attr: {class: 'input-group-field fact-finder-feedback-positive'}}) }}
+            </div>
+            {{ form_errors(feedbackForm.positive) }}
+            <h5>{{ feedbackForm.message.vars.label | trans }}</h5>
+            <div class="input-group">
+                {{ form_widget(feedbackForm.message, {attr: {class: 'input-group-field fact-finder-feedback-message'}}) }}
+                <div class="input-group-button">
+                    <button class="button expanded info fact-finder-feedback-send" type="submit"><i class="fa fa-gift"></i>{{ 'factfinder.feedback.send' | trans }}</button>
+                </div>
+            </div>
+            {{ form_errors(feedbackForm.message) }}
+            <input type="hidden" name="query" value="{{ query }}" class="fact-finder-feedback-query"/>
+        </div>
+    </div>
+</div>
+{{ form_end(feedbackForm) }}
