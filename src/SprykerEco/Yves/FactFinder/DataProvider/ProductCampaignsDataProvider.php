@@ -29,7 +29,7 @@ class ProductCampaignsDataProvider implements ProductCampaignsDataProviderInterf
     /**
      * @param array $parameters
      *
-     * @return array|\Generated\Shared\Transfer\FactFinderSdkDataCampaignIteratorTransfer
+     * @return \ArrayObject|\Generated\Shared\Transfer\FactFinderSdkDataCampaignTransfer[]
      */
     public function buildTemplateData(array $parameters)
     {
