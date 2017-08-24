@@ -1,19 +1,21 @@
 <ul class="page-breadcrumb__items">
     <li><a href="/">{{ 'global.home' | trans }}</a></li>
 
-    {% for breadcrumb in factFinder.breadCrumbs %}
-        {% if breadcrumb.item.label == '*' %}
-            <li>
-                <a href="{{ breadcrumb.item.url }}">
-                    {{ 'global.search' | trans }}
-                </a>
-            </li>
-        {% else %}
-            <li>
-                <a href="{{ breadcrumb.item.url }}">
-                    {{ breadcrumb.item.label }}
-                </a>
-            </li>
-        {% endif %}
-    {% endfor %}
+    {% if factFinder.breadCrumbs %}
+        {% for breadcrumb in factFinder.breadCrumbs %}
+            {% if breadcrumb.item.label == '*' %}
+                <li>
+                    <a href="{{ breadcrumb.item.url }}">
+                        {{ 'global.search' | trans }}
+                    </a>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{{ breadcrumb.item.url }}">
+                        {{ breadcrumb.item.label }}
+                    </a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
 </ul>

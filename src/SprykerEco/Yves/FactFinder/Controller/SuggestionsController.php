@@ -33,6 +33,10 @@ class SuggestionsController extends AbstractController
             ->getFactFinderClient()
             ->getSuggestions($factFinderSuggestRequestTransfer);
 
+        if (empty($response->getSuggestions())) {
+            return $this->jsonResponse(null, 400);
+        }
+
         return $this->jsonResponse($response->getSuggestions());
     }
 
