@@ -33,12 +33,16 @@ class SearchController extends AbstractController
             ->getFactFinderClient()
             ->search($factFinderSearchRequestTransfer);
 
+        $feedbackForm = $this->getFactory()
+            ->createFeedbackForm();
+
         return [
             'searchResponse' => $ffSearchResponseTransfer,
             'pagingRote' => 'fact-finder',
             'lang' => Store::getInstance()->getCurrentLanguage(),
             'query' => isset($requestArray['query']) ? $requestArray['query'] : '',
             'page' => isset($requestArray['page']) ? $requestArray['page'] : '',
+            'feedbackForm' => $feedbackForm->createView(),
         ];
     }
 

@@ -34,7 +34,7 @@ class RecommendationsDataProvider implements RecommendationsDataProviderInterfac
     public function buildTemplateData(array $parameters)
     {
         $factFinderRecommendationRequestTransfer = new FactFinderSdkRecommendationRequestTransfer();
-        $factFinderRecommendationRequestTransfer->fromArray($parameters);
+        $factFinderRecommendationRequestTransfer->fromArray($parameters, true);
 
         $factFinderRecommendationsResponseTransfer = $this->factFinderClient
             ->getRecommendations($factFinderRecommendationRequestTransfer);
