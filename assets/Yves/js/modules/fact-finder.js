@@ -33,13 +33,31 @@ function init(config) {
 
         formAction = formAction.replace(
             filterName + '=' + previousMinimum + '-' + previousMaximum,
-            filterName + '=' + minimum * 100 + '-' + maximum * 100
+            filterName + '=' + minimum + '-' + maximum
         );
 
         $(form).attr('action', formAction);
         $(form).find("input[name='min']").attr('data-old-value', minimum);
         $(form).find("input[name='max']").attr('data-old-value', maximum);
         window.location = formAction;
+    });
+
+    $('.fact-finder-range-filter-input-of, .fact-finder-range-filter-input-to').change(function(event){
+        var input = $(event.target);
+
+        if (input.val() > input.attr('max')) {
+            input.val(input.attr('max'));
+        }
+
+        if (input.val() < input.attr('min')) {
+            input.val(input.attr('min'));
+        }
+
+        var ofInput = $('.fact-finder-range-filter-input-of');
+        var toInput = $('.fact-finder-range-filter-input-to');
+
+        ofInput.attr('max', toInput.val());
+        toInput.attr('min', ofInput.val());
     });
 
     $("#ffSearchInput").keyup(function(e){
