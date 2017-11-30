@@ -8,10 +8,8 @@
 namespace SprykerEco\Yves\FactFinder\Controller;
 
 use Generated\Shared\Transfer\FactFinderSdkSearchRequestTransfer;
-use Pyz\Yves\Application\Plugin\Provider\ApplicationControllerProvider;
 use Spryker\Shared\Kernel\Store;
 use Spryker\Yves\Kernel\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -37,7 +35,7 @@ class SearchController extends AbstractController
 
         $feedbackForm = $this->getFactory()
             ->createFeedbackForm();
-      
+
         if (!$ffSearchResponseTransfer->getResult()) {
             $this->addErrorMessage('Search is not available at the moment');
         }
