@@ -7,26 +7,30 @@
                     <div class="small-6 columns">
                         <label>
                             {{ "catalog.filter.rangeFrom"|trans }}
-                            <input type="number" name="min"
-                                   value="{{ filter.selectedMinimum / 100 }}"
+                            <input type="number" name="min" class="fact-finder-range-filter-input-of"
+                                   value="{{ filter.selectedMinimum }}"
                                    required="required"
-                                   min="{{ filter.absoluteMinimum / 100 }}"
-                                   max="{{ filter.absoluteMaximum / 100 }}"
-                                   step="0.01"
+                                   min="{{ filter.absoluteMinimum }}"
+                                   max="{{ filter.absoluteMaximum }}"
+                                   step="1"
                                    data-old-value="{{ filter.selectedMinimum }}"
+                                   data-absolute-minimum="{{ filter.absoluteMinimum }}"
+                                   data-absolute-maximum="{{ filter.absoluteMaximum }}"
                             />
                         </label>
                     </div>
                     <div class="small-6 columns">
                         <label>
                             {{ "catalog.filter.rangeTo"|trans }}
-                            <input type="number" name="max"
-                                   value="{{ filter.selectedMaximum / 100 }}"
+                            <input type="number" name="max" class="fact-finder-range-filter-input-to"
+                                   value="{{ filter.selectedMaximum }}"
                                    required="required"
-                                   min="{{ filter.absoluteMinimum / 100 }}"
-                                   max="{{ filter.absoluteMaximum / 100 }}"
-                                   step="0.01"
+                                   min="{{ filter.absoluteMinimum }}"
+                                   max="{{ filter.absoluteMaximum }}"
+                                   step="1"
                                    data-old-value="{{ filter.selectedMaximum }}"
+                                   data-absolute-minimum="{{ filter.absoluteMinimum }}"
+                                   data-absolute-maximum="{{ filter.absoluteMaximum }}"
                             />
                         </label>
                     </div>
