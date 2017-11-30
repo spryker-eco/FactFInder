@@ -7,7 +7,7 @@
     {% endif %}
     <p>
         <strong>{{ name }}</strong><br>
-        {{ priceValue|money }}
+        {{ priceValue }}
     </p>
     <a class="button expanded fact-finder-track" href="{{ detailsUrl }}" data-tracking="{{trackInfo|json_encode}}">View &raquo;</a>
 </div>
