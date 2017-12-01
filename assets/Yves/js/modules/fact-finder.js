@@ -45,11 +45,11 @@ function init(config) {
     $('.fact-finder-range-filter-input-of, .fact-finder-range-filter-input-to').change(function(event){
         var input = $(event.target);
 
-        if (input.val() > input.attr('max')) {
+        if (parseFloat(input.val()) > parseFloat(input.attr('max'))) {
             input.val(input.attr('max'));
         }
 
-        if (input.val() < input.attr('min')) {
+        if (parseFloat(input.val()) < parseFloat(input.attr('min'))) {
             input.val(input.attr('min'));
         }
 
