@@ -26,6 +26,7 @@ class SuggestionsController extends AbstractController
     {
         $factFinderSuggestRequestTransfer = new FactFinderSdkSuggestRequestTransfer();
         $query = $request->query->get('query', '*');
+        $query = urlencode($query);
 
         $factFinderSuggestRequestTransfer->setQuery($query);
 
