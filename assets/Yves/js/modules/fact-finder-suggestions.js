@@ -41,7 +41,7 @@ var factFinderSuggestions = {
     },
 
     buildUrl: function (queryText) {
-        return this.url + encodeURIComponent(queryText);
+        return this.url + queryText;
     },
 
     prepareObjectsList: function (items) {
