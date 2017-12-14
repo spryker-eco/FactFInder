@@ -8,7 +8,6 @@
 namespace SprykerEco\Yves\FactFinder\Controller;
 
 use Generated\Shared\Transfer\FactFinderSdkSearchRequestTransfer;
-use Generated\Shared\Transfer\FactFinderSdkSearchResponseTransfer;
 use Spryker\Shared\Kernel\Store;
 use Spryker\Yves\Kernel\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
