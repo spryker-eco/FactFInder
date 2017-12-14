@@ -8,6 +8,7 @@
 namespace SprykerEco\Yves\FactFinder\Controller;
 
 use Generated\Shared\Transfer\FactFinderSdkSearchRequestTransfer;
+use Generated\Shared\Transfer\FactFinderSdkSearchResponseTransfer;
 use Spryker\Shared\Kernel\Store;
 use Spryker\Yves\Kernel\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,6 +33,10 @@ class SearchController extends AbstractController
         $ffSearchResponseTransfer = $this->getFactory()
             ->getFactFinderClient()
             ->search($factFinderSearchRequestTransfer);
+
+        if ($ffSearchResponseTransfer->getCampaignIterator()->getHasRedirect()) {
+            return $this->redirectResponseExternal($ffSearchResponseTransfer->getCampaignIterator()->getRedirectUrl());
+        }
 
         $feedbackForm = $this->getFactory()
             ->createFeedbackForm();
