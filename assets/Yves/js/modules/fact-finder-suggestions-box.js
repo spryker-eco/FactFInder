@@ -19,19 +19,20 @@ var suggestionsBox = {
         this.resetCursorPosition();
 
         $.each(objectsList, function (i, item) {
-            switch (item.type) {
-                case 'productName':
-                    var productTemplateHtml = suggestionsBox.getProductTemplateHtml(item);
-                    $('.ff-products').append(productTemplateHtml);
-                    break;
-                case 'category':
-                    var categoryTemplateHtml = suggestionsBox.getCategoryTemplateHtml(item, queryText);
-                    $('.ff-categories').append(categoryTemplateHtml);
-                    break;
-                case 'searchTerm':
-                    var searchTermsTemplateHtml = suggestionsBox.getSearchTermsTemplateHtml(item, queryText);
-                    $('.ff-search-terms').append(searchTermsTemplateHtml);
-                    break;
+            if (item.type == 'productName') {
+                var productTemplateHtml = suggestionsBox.getProductTemplateHtml(item);
+                $('.ff-products').append(productTemplateHtml);
+                return true;
+            }
+            if (item.type == 'category') {
+                var categoryTemplateHtml = suggestionsBox.getCategoryTemplateHtml(item, queryText);
+                $('.ff-categories').append(categoryTemplateHtml);
+                return true;
+            }
+            if (item.type == 'searchTerm') {
+                var searchTermsTemplateHtml = suggestionsBox.getSearchTermsTemplateHtml(item, queryText);
+                $('.ff-search-terms').append(searchTermsTemplateHtml);
+                return true;
             }
         });
 
