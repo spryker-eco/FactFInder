@@ -33,6 +33,10 @@ class SearchController extends AbstractController
             ->getFactFinderClient()
             ->search($factFinderSearchRequestTransfer);
 
+        if ($ffSearchResponseTransfer->getCampaignIterator()->getHasRedirect()) {
+            return $this->redirectResponseExternal($ffSearchResponseTransfer->getCampaignIterator()->getRedirectUrl());
+        }
+
         $feedbackForm = $this->getFactory()
             ->createFeedbackForm();
 
