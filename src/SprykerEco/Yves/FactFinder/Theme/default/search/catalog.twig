@@ -48,10 +48,6 @@
             campaigns: searchResponse.campaignIterator.campaigns,
         } %}
 
-        {% include '@FactFinder/campaigns/partials/pushed-products.twig' with {
-            campaigns: searchResponse.campaignIterator.campaigns,
-        } %}
-
         {% include '@FactFinder/search/partials/pagination.twig' %}
 
         {% include '@FactFinder/search/partials/feedback.twig' with {

@@ -4,6 +4,11 @@
             <div class="small-12 columns">
                 <div class="callout">
                     <h3>{{ campaign.name }}</h3>
+
+                    {% if campaign.feedback['above pushed product'] is defined %}
+                        {{ campaign.feedback['above pushed product'] | raw }}
+                    {% endif %}
+
                     <div class="row align-spaced">
                         <div class="small-11 columns">
                             <div class="carousel" data-component="carousel">
