@@ -39,6 +39,12 @@
                     <div class="ff-categories">
 
                     </div>
+
+                    <h6>{{ 'global.search.search-term' | trans }}</h6>
+
+                    <div class="ff-search-terms">
+
+                    </div>
                 </div>
 
                 <div class="columns show-for-medium __no-margin-bottom">
@@ -60,10 +66,19 @@
 
 <script type="text/template" id="suggestions-box-row">
     <a class="row suggestions-panel__product js-product js-navigable" href=":url">
-        <span class="columns">
+        <span class="columns ff-suggestion-image">
             <img class="thumbnail" src=:image >
         </span>
 
+        <span class="small-9 columns ff-product-name">
+            :name
+            <br>
+        </span>
+    </a>
+</script>
+
+<script type="text/template" id="suggestions-box-search-term-row">
+    <a class="row suggestions-panel__product js-product js-navigable" href=":url">
         <span class="small-9 columns ff-product-name">
             :name
             <br>
