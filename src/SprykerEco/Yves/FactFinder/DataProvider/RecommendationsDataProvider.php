@@ -8,23 +8,9 @@
 namespace SprykerEco\Yves\FactFinder\DataProvider;
 
 use Generated\Shared\Transfer\FactFinderSdkRecommendationRequestTransfer;
-use SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientInterface;
 
-class RecommendationsDataProvider implements RecommendationsDataProviderInterface
+class RecommendationsDataProvider extends AbstractDataProvider implements RecommendationsDataProviderInterface
 {
-
-    /**
-     * @var \SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientInterface
-     */
-    protected $factFinderClient;
-
-    /**
-     * @param \SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientInterface $factFinderClient
-     */
-    public function __construct(FactFinderToFactFinderClientInterface $factFinderClient)
-    {
-        $this->factFinderClient = $factFinderClient;
-    }
 
     /**
      * @param array $parameters
@@ -33,6 +19,8 @@ class RecommendationsDataProvider implements RecommendationsDataProviderInterfac
      */
     public function buildTemplateData(array $parameters)
     {
+        $this->addSessionId($parameters);
+
         $factFinderRecommendationRequestTransfer = new FactFinderSdkRecommendationRequestTransfer();
         $factFinderRecommendationRequestTransfer->fromArray($parameters, true);
 

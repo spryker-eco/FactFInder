@@ -10,11 +10,13 @@ namespace SprykerEco\Yves\FactFinder;
 use Spryker\Yves\Kernel\AbstractBundleDependencyProvider;
 use Spryker\Yves\Kernel\Container;
 use SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientBridge;
+use SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToSessionClientBridge;
 
 class FactFinderDependencyProvider extends AbstractBundleDependencyProvider
 {
 
     const FACT_FINDER_CLIENT = 'FACT_FINDER_CLIENT';
+    const SESSION_CLIENT = 'SESSION_CLIENT';
 
     /**
      * @param \Spryker\Yves\Kernel\Container $container
@@ -41,6 +43,13 @@ class FactFinderDependencyProvider extends AbstractBundleDependencyProvider
                 ->client();
 
             return new FactFinderToFactFinderClientBridge($factFinderClient);
+        };
+        $container[self::SESSION_CLIENT] = function () use ($container) {
+            $sessionClient = $container->getLocator()
+                ->session()
+                ->client();
+
+            return new FactFinderToSessionClientBridge($sessionClient);
         };
 
         return $container;

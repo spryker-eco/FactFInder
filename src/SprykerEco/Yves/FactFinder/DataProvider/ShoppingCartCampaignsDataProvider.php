@@ -9,7 +9,7 @@ namespace SprykerEco\Yves\FactFinder\DataProvider;
 
 use Generated\Shared\Transfer\FactFinderSdkProductCampaignRequestTransfer;
 
-class ShoppingCartCampaignsDataProvider extends ProductCampaignsDataProvider
+class ShoppingCartCampaignsDataProvider extends AbstractDataProvider implements ShoppingCartCampaignsDataProviderInterface
 {
 
     /**
@@ -19,6 +19,8 @@ class ShoppingCartCampaignsDataProvider extends ProductCampaignsDataProvider
      */
     public function buildTemplateData(array $parameters)
     {
+        $this->addSessionId($parameters);
+
         $factFinderProductCampaignRequestTransfer = new FactFinderSdkProductCampaignRequestTransfer();
         $factFinderProductCampaignRequestTransfer->fromArray($parameters, true);
 

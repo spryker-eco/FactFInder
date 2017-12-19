@@ -5,6 +5,7 @@
   "require": {
     "spryker-eco/fact-finder-sdk": "@dev",
     "spryker/kernel": "^3.0.0",
+    "spryker/session": "^3.0.0",
     "spryker/symfony": "^3.0.0"
   },
   "autoload": {

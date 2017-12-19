@@ -26,12 +26,21 @@ class FactFinderFactory extends AbstractFactory
     }
 
     /**
+     * @return \SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToSessionClientInterface
+     */
+    public function getSessionClient()
+    {
+        return $this->getProvidedDependency(FactFinderDependencyProvider::SESSION_CLIENT);
+    }
+
+    /**
      * @return \SprykerEco\Yves\FactFinder\DataProvider\RecommendationsDataProviderInterface
      */
     public function createRecommendationsDataProvider()
     {
         return new RecommendationsDataProvider(
-            $this->getFactFinderClient()
+            $this->getFactFinderClient(),
+            $this->getSessionClient()
         );
     }
 

@@ -8,23 +8,9 @@
 namespace SprykerEco\Yves\FactFinder\DataProvider;
 
 use Generated\Shared\Transfer\FactFinderSdkProductCampaignRequestTransfer;
-use SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientInterface;
 
-class ProductCampaignsDataProvider implements ProductCampaignsDataProviderInterface
+class ProductCampaignsDataProvider extends AbstractDataProvider implements ProductCampaignsDataProviderInterface
 {
-
-    /**
-     * @var \SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientInterface
-     */
-    protected $factFinderClient;
-
-    /**
-     * @param \SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientInterface $factFinderClient
-     */
-    public function __construct(FactFinderToFactFinderClientInterface $factFinderClient)
-    {
-        $this->factFinderClient = $factFinderClient;
-    }
 
     /**
      * @param array $parameters
@@ -33,6 +19,8 @@ class ProductCampaignsDataProvider implements ProductCampaignsDataProviderInterf
      */
     public function buildTemplateData(array $parameters)
     {
+        $this->addSessionId($parameters);
+
         $factFinderProductCampaignRequestTransfer = new FactFinderSdkProductCampaignRequestTransfer();
         $factFinderProductCampaignRequestTransfer->fromArray($parameters, true);
 
