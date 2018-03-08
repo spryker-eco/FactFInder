@@ -70,15 +70,7 @@ class FactFinderFactory extends AbstractFactory
     public function createFeedbackForm()
     {
         return $this->getProvidedDependency(ApplicationConstants::FORM_FACTORY)
-            ->create($this->createFeedbackFormType());
-    }
-
-    /**
-     * @return \SprykerEco\Yves\FactFinder\Form\SearchResultFeedbackForm
-     */
-    protected function createFeedbackFormType()
-    {
-        return new SearchResultFeedbackForm();
+            ->create(SearchResultFeedbackForm::class);
     }
 
 }

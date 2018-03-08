@@ -108,6 +108,18 @@ function init(config) {
 
         track.query(data);
     });
+
+
+    $(document).on('click','.ff-suggestion-box a', function(event) {
+        event.preventDefault();
+
+        var link = $(event.target).closest('a');
+        var url = link.attr('href');
+        var trackingData = link.data('tracking');
+
+        track.query(trackingData);
+        window.location.href = url;
+    });
 }
 
 module.exports = {

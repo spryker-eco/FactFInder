@@ -46,6 +46,7 @@ var factFinderSuggestions = {
 
     prepareObjectsList: function (items) {
         var objectsList = [];
+        var searchInput = $('#ffSearchInput').val();
 
         $.each(items, function (i, item) {
             objectsList.push({
@@ -54,7 +55,15 @@ var factFinderSuggestions = {
                 'image': item.imageUrl,
                 'type': item.type,
                 'attributes': item.attributes,
-                'label': item.label
+                'label': item.label,
+                'tracking': {
+                    'id': item.attributes.id,
+                    'masterId': item.attributes.masterId,
+                    'mainId': item.attributes.masterId,
+                    'event': 'recommendationClick',
+                    'queryFromSuggest': true,
+                    'userInput': searchInput
+                }
             });
         });
 

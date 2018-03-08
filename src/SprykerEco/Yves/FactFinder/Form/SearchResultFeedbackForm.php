@@ -7,7 +7,9 @@
 
 namespace SprykerEco\Yves\FactFinder\Form;
 
-use Symfony\Component\Form\AbstractType;
+use Spryker\Zed\Kernel\Communication\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
@@ -77,7 +79,7 @@ class SearchResultFeedbackForm extends AbstractType
      */
     protected function addPositiveField(FormBuilderInterface $builder)
     {
-        $builder->add(self::FIELD_POSITIVE, 'choice', [
+        $builder->add(self::FIELD_POSITIVE, ChoiceType::class, [
             'choices' => [
                 'true' => 'factfinder.feedback.positive.value.positive',
                 'false' => 'factfinder.feedback.positive.value.negative',
@@ -99,7 +101,7 @@ class SearchResultFeedbackForm extends AbstractType
      */
     protected function addMessageField(FormBuilderInterface $builder)
     {
-        $builder->add(self::FIELD_MESSAGE, 'text', [
+        $builder->add(self::FIELD_MESSAGE, TextType::class, [
             'label' => 'factfinder.feedback.message',
             'required' => false,
         ]);

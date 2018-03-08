@@ -6,6 +6,7 @@
 'use strict';
 
 var $ = require('jquery');
+var tracking = require('./fact-finder-track');
 
 var suggestionsBox = {
 
@@ -46,6 +47,9 @@ var suggestionsBox = {
         item.url = item.attributes.deeplink;
 
         $.each(item, function (index, value) {
+            if (typeof value == 'object') {
+                value = JSON.stringify(value);
+            }
             productTemplateHtml = productTemplateHtml.replace(':' + index, value);
         });
 
@@ -141,10 +145,14 @@ var suggestionsBox = {
     goTo: function (e) {
         e.preventDefault();
 
-        if ($('.suggestions').find('a.js-navigable.is-active') != undefined) {
-            var url = $('.suggestions').find('a.js-navigable.is-active').attr('href');
+        var link = $('.suggestions').find('a.js-navigable.is-active');
+
+        if (link != undefined) {
+            var url = link.attr('href');
+            var trackingData = JSON.parse(link.data('tracking'));
 
             if (url != undefined) {
+                tracking.query(trackingData);
                 window.location.href = url;
             }
         }
