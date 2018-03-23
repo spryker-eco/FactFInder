@@ -1,12 +1,14 @@
 <?php
 
-namespace SprykerEco\Zed\FactFinder\Business\Tracker;
+namespace SprykerEco\Zed\FactFinder\Business;
 
 use Generated\Shared\Transfer\QuoteTransfer;
 
-interface TrackerInterface
+interface FactFinderFacadeInterface
 {
     /**
+     * @api
+     *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
      *
      * @return void

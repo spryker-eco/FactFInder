@@ -10,8 +10,9 @@ class FactFinderDependencyProvider extends AbstractBundleDependencyProvider
     const FACT_FINDER_SDK_CLIENT = 'FACT_FINDER_SDK_CLIENT';
 
     /**
-     * @param Container $container
-     * @return Container
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
      */
     public function provideBusinessLayerDependencies(Container $container)
     {
@@ -21,8 +22,9 @@ class FactFinderDependencyProvider extends AbstractBundleDependencyProvider
     }
 
     /**
-     * @param Container $container
-     * @return Container
+     * @param \Spryker\Zed\Kernel\Container $container
+     *
+     * @return \Spryker\Zed\Kernel\Container
      */
     protected function addFactFinderSdkClient(Container $container)
     {
@@ -32,5 +34,4 @@ class FactFinderDependencyProvider extends AbstractBundleDependencyProvider
 
         return $container;
     }
-
 }

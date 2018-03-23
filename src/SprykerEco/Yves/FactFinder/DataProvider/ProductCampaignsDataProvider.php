@@ -11,7 +11,6 @@ use Generated\Shared\Transfer\FactFinderSdkProductCampaignRequestTransfer;
 
 class ProductCampaignsDataProvider extends AbstractDataProvider implements ProductCampaignsDataProviderInterface
 {
-
     /**
      * @param array $parameters
      *
@@ -31,5 +30,4 @@ class ProductCampaignsDataProvider extends AbstractDataProvider implements Produ
 
         return $productCampaigns;
     }
-
 }

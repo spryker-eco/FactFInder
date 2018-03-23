@@ -19,7 +19,6 @@ use Twig_SimpleFunction;
  */
 class FactFinderTwigServiceProvider extends AbstractPlugin implements ServiceProviderInterface
 {
-
     use LoggerTrait;
 
     /**
@@ -155,5 +154,4 @@ class FactFinderTwigServiceProvider extends AbstractPlugin implements ServicePro
     {
         // TODO: Implement boot() method.
     }
-
 }

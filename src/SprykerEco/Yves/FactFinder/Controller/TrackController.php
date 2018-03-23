@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class TrackController extends AbstractController
 {
-
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
@@ -40,5 +39,4 @@ class TrackController extends AbstractController
 
         return $this->jsonResponse();
     }
-
 }

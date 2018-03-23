@@ -13,7 +13,6 @@ use SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToSessionClientInter
 
 abstract class AbstractDataProvider
 {
-
     /**
      * @var \Spryker\Client\Session\SessionClientInterface
      */
@@ -47,5 +46,4 @@ abstract class AbstractDataProvider
             $parameters[FactFinderConstants::REQUEST_PARAMETER_SID] = $this->sessionClient->getId();
         }
     }
-
 }

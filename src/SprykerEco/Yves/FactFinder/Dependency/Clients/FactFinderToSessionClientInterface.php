@@ -9,10 +9,8 @@ namespace SprykerEco\Yves\FactFinder\Dependency\Clients;
 
 interface FactFinderToSessionClientInterface
 {
-
     /**
      * @return string
      */
     public function getId();
-
 }

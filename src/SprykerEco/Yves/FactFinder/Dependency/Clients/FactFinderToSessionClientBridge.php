@@ -11,7 +11,6 @@ use Spryker\Client\Session\SessionClientInterface;
 
 class FactFinderToSessionClientBridge implements FactFinderToSessionClientInterface
 {
-
     /**
      * @var \Spryker\Client\Session\SessionClientInterface
      */
@@ -34,5 +33,4 @@ class FactFinderToSessionClientBridge implements FactFinderToSessionClientInterf
     {
         return $this->sessionClient->getId();
     }
-
 }

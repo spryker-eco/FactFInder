@@ -15,7 +15,6 @@ use Generated\Shared\Transfer\FactFinderSdkTrackingRequestTransfer;
 
 class FactFinderToFactFinderClientBridge implements FactFinderToFactFinderClientInterface
 {
-
     /**
      * @var \SprykerEco\Client\FactFinderSdk\FactFinderSdkClientInterface
      */
@@ -96,5 +95,4 @@ class FactFinderToFactFinderClientBridge implements FactFinderToFactFinderClient
         return $this->factFinderClient
             ->getShoppingCartCampaigns($factFinderSdkProductCampaignRequestTransfer);
     }
-
 }

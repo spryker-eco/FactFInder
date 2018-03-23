@@ -14,7 +14,6 @@ use SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToSessionClientBridg
 
 class FactFinderDependencyProvider extends AbstractBundleDependencyProvider
 {
-
     const FACT_FINDER_CLIENT = 'FACT_FINDER_CLIENT';
     const SESSION_CLIENT = 'SESSION_CLIENT';
 
@@ -54,5 +53,4 @@ class FactFinderDependencyProvider extends AbstractBundleDependencyProvider
 
         return $container;
     }
-
 }

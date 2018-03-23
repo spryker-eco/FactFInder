@@ -16,7 +16,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class RecommendationsController extends AbstractController
 {
-
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
@@ -38,5 +37,4 @@ class RecommendationsController extends AbstractController
 
         return $this->jsonResponse($recommendations);
     }
-
 }

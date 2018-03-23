@@ -16,7 +16,6 @@ use SprykerEco\Yves\FactFinder\Form\SearchResultFeedbackForm;
 
 class FactFinderFactory extends AbstractFactory
 {
-
     /**
      * @return \SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientInterface
      */
@@ -72,5 +71,4 @@ class FactFinderFactory extends AbstractFactory
         return $this->getProvidedDependency(ApplicationConstants::FORM_FACTORY)
             ->create(SearchResultFeedbackForm::class);
     }
-
 }

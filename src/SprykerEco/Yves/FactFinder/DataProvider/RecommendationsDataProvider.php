@@ -11,11 +11,10 @@ use Generated\Shared\Transfer\FactFinderSdkRecommendationRequestTransfer;
 
 class RecommendationsDataProvider extends AbstractDataProvider implements RecommendationsDataProviderInterface
 {
-
     /**
      * @param array $parameters
      *
-     * @return array|\Generated\Shared\Transfer\StorageProductAbstractRelationTransfer[]
+     * @return \Generated\Shared\Transfer\StorageProductAbstractRelationTransfer[]
      */
     public function buildTemplateData(array $parameters)
     {
@@ -31,5 +30,4 @@ class RecommendationsDataProvider extends AbstractDataProvider implements Recomm
 
         return $recommendations;
     }
-
 }

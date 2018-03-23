@@ -17,7 +17,6 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class SearchController extends AbstractController
 {
-
     /**
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
@@ -53,5 +52,4 @@ class SearchController extends AbstractController
             'feedbackForm' => $feedbackForm->createView(),
         ];
     }
-
 }

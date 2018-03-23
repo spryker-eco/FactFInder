@@ -7,17 +7,15 @@
 
 namespace SprykerEco\Yves\FactFinder\Form;
 
-use Spryker\Zed\Kernel\Communication\Form\AbstractType;
+use Spryker\Yves\Kernel\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class SearchResultFeedbackForm extends AbstractType
 {
-
     const FIELD_POSITIVE = 'positive';
     const FIELD_MESSAGE = 'message';
     const FORM_ID = 'searchResultFeedback';
@@ -47,11 +45,11 @@ class SearchResultFeedbackForm extends AbstractType
     /**
      * @deprecated Use `configureOptions()` instead.
      *
-     * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      *
      * @return void
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function setDefaultOptions(OptionsResolver $resolver)
     {
         $this->configureOptions($resolver);
     }
@@ -108,5 +106,4 @@ class SearchResultFeedbackForm extends AbstractType
 
         return $this;
     }
-
 }

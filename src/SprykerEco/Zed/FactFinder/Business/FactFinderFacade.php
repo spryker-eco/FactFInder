@@ -6,21 +6,19 @@ use Generated\Shared\Transfer\QuoteTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
- * @method FactFinderBusinessFactory getFactory()
+ * @method \SprykerEco\Zed\FactFinder\Business\FactFinderBusinessFactory getFactory()
  */
-class FactFinderFacade extends AbstractFacade
+class FactFinderFacade extends AbstractFacade implements FactFinderFacadeInterface
 {
-
     /**
      * @api
      *
-     * @param QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
      * @return void
-     * @throws \Spryker\Zed\Kernel\Exception\Container\ContainerKeyNotFoundException
      */
     public function track(QuoteTransfer $quoteTransfer)
     {
         $this->getFactory()->createTracker()->track($quoteTransfer);
     }
-
 }

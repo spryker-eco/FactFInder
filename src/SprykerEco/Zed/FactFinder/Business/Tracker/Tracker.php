@@ -6,19 +6,18 @@ use Generated\Shared\Transfer\FactFinderSdkTrackingRequestTransfer;
 use Generated\Shared\Transfer\QuoteTransfer;
 use SprykerEco\Client\FactFinderSdk\FactFinderSdkClientInterface;
 use SprykerEco\Shared\FactFinder\FactFinderConstants;
-use SprykerEco\Shared\FactFinderSdk\FactFinderSdkConstants;
 
 class Tracker implements TrackerInterface
 {
-
     /**
-     * @var FactFinderSdkClientInterface
+     * @var \SprykerEco\Client\FactFinderSdk\FactFinderSdkClientInterface
      */
     protected $factFinderSdkClient;
 
     /**
      * Tracker constructor.
-     * @param FactFinderSdkClientInterface $factFinderSdkClient
+     *
+     * @param \SprykerEco\Client\FactFinderSdk\FactFinderSdkClientInterface $factFinderSdkClient
      */
     public function __construct(FactFinderSdkClientInterface $factFinderSdkClient)
     {
@@ -26,7 +25,8 @@ class Tracker implements TrackerInterface
     }
 
     /**
-     * @param QuoteTransfer $quoteTransfer
+     * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
+     *
      * @return void
      */
     public function track(QuoteTransfer $quoteTransfer)
@@ -42,5 +42,4 @@ class Tracker implements TrackerInterface
             $this->factFinderSdkClient->track($trackingRequest);
         }
     }
-
 }
