@@ -19,9 +19,14 @@ class RecommendationsDataProvider extends AbstractDataProvider implements Recomm
     public function buildTemplateData(array $parameters)
     {
         $this->addSessionId($parameters);
+        $recommendations = [];
 
         $factFinderRecommendationRequestTransfer = new FactFinderSdkRecommendationRequestTransfer();
         $factFinderRecommendationRequestTransfer->fromArray($parameters, true);
+
+        if ($factFinderRecommendationRequestTransfer->getId() === null) {
+            return $recommendations;
+        }
 
         $factFinderRecommendationsResponseTransfer = $this->factFinderClient
             ->getRecommendations($factFinderRecommendationRequestTransfer);
