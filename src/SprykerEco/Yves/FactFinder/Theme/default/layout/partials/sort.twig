@@ -1,19 +1,23 @@
 {% if factFinder.result is defined and factFinder.resultsPerPageOptions.defaultOption is defined %}
 
-    {% set productsPerPage = factFinder.resultsPerPageOptions.defaultOption.label %}
-
     <div class="callout">
         <div class="row align-middle">
-
             <div class="small-12 large-4 xlarge-3 columns show-for-large">
                 <strong>{{ factFinder.result.foundRecordsCount }}</strong> {{ "catalog.itemsFound"|trans }}
             </div>
             <div class="small-2 large-2 xlarge-2 columns">
                 <label>
                     <select name="products-per-page" class="__no-margin-bottom fact-finder-products-per-page">
-                        <option value="20" {% if productsPerPage == 20 %}selected{% endif %}>20</option>
-                        <option value="40" {% if productsPerPage == 40 %}selected{% endif %}>40</option>
-                        <option value="60" {% if productsPerPage == 60 %}selected{% endif %}>60</option>
+                        {% if factFinder.resultsPerPageOptions.items is defined %}
+                            {% for item in factFinder.resultsPerPageOptions.items %}
+                                <option value="{{ item.url }}" {% if item.selected == true %}selected{% endif %}>{{ item.label }}</option>
+                            {% endfor %}
+                        {% else %}
+                            <option value="{{ factFinder.resultsPerPageOptions.defaultOption.url }}"
+                                    {% if factFinder.resultsPerPageOptions.defaultOption.selected == true %}selected{% endif %}>
+                                {{ factFinder.resultsPerPageOptions.defaultOption.label }}
+                            </option>
+                        {% endif %}
                     </select>
                 </label>
             </div>
@@ -21,15 +25,10 @@
                 <label>
                     <select name="sort" class="__no-margin-bottom fact-finder-sort-options">
                         {% for sortingItem in factFinder.sortingItems %}
-                            <option value="{{ sortingItem.url }}" {% if sortingItem.selected %}selected{% endif %}>{{ ('catalog.sort.' ~ sortingItem.label) | trans }}</option>
+                            <option value="{{ sortingItem.url }}" {% if sortingItem.selected %}selected{% endif %}>{{ sortingItem.label }}</option>
                         {% endfor %}
                     </select>
                 </label>
-            </div>
-            <div class="small-4 large-3 xlarge-2 columns">
-                <button type="submit" class="button hollow expanded __no-margin-bottom fact-finder-sort-action">
-                    <i class="fa fa-sort"></i> Sort
-                </button>
             </div>
         </div>
     </div>

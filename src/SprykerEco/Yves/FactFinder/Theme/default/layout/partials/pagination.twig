@@ -1,58 +1,31 @@
-{% if extremePagesLimit is not defined %}
-    {% set extremePagesLimit = 1 %}
-{% endif %}
-{% if nearbyPagesLimit is not defined %}
-    {% set nearbyPagesLimit = 2 %}
-{% endif %}
+{% if factFinder is defined and factFinder.paging is defined %}
+    {% set paging = factFinder.paging %}
 
-{% spaceless %}
     <ul class="pagination __no-margin-bottom" role="navigation">
-        {% if currentPage.pageNumber > 1 %}
-            {% set currentPageUri = 'page=' ~ maxPage.pageNumber %}
-            {% set newPageUri = 'page=' ~ (currentPage.pageNumber - 1) %}
-            <li class="pagination-previous"><a href="{{ maxPage.item.url | replace({(currentPageUri): newPageUri}) }}">{{ 'pagination.previous' | trans }}</a></li>
-
-            {% for i in range(1, extremePagesLimit) if ( i < currentPage.pageNumber - nearbyPagesLimit ) %}
-                {% set currentPageUri = 'page=' ~ maxPage.pageNumber %}
-                {% set newPageUri = 'page=' ~ i %}
-                <li><a href="{{ maxPage.item.url | replace({(currentPageUri): newPageUri}) }}">{{ i }}</a></li>
-            {% endfor %}
-
-            {% if extremePagesLimit + 1 < currentPage.pageNumber - nearbyPagesLimit %}
-                <li class="ellipsis" aria-hidden="true"></li>
-            {% endif %}
-
-            {% for i in range(currentPage.pageNumber - nearbyPagesLimit, currentPage.pageNumber - 1) if ( i > 0 ) %}
-                {% set currentPageUri = 'page=' ~ maxPage.pageNumber %}
-                {% set newPageUri = 'page=' ~ i %}
-                <li><a href="{{ maxPage.item.url | replace({(currentPageUri): newPageUri}) }}">{{ i }}</a></li>
-            {% endfor %}
-        {% elseif showAlwaysFirstAndLast %}
-            <li class="pagination-previous disabled">{{ 'pagination.previous' | trans }}</li>
+        {% if paging.previousPage is defined and paging.previousPage.item != null %}
+            <li class="pagination-previous">
+                <a href="{{ paging.previousPage.item.url }}">
+                    {{ paging.previousPage.item.label }}
+                </a>
+            </li>
         {% endif %}
 
-        <li><a href="{{ currentPage.item.url }}" class="current">{{ currentPage.item.label }}</a></li>
-
-        {% if currentPage.pageNumber < maxPage.pageNumber %}
-            {% for i in range(currentPage.pageNumber + 1, currentPage.pageNumber + nearbyPagesLimit) if ( i <= maxPage.pageNumber ) %}
-                {% set currentPageUri = 'page=' ~ maxPage.pageNumber %}
-                {% set newPageUri = 'page=' ~ i %}
-                <li><a href="{{ maxPage.item.url | replace({(currentPageUri): newPageUri}) }}">{{ i }}</a></li>
+        {% if paging.pages is defined %}
+            {% for page in paging.pages %}
+                <li>
+                    <a href="{{ page.item.url }}" class="{{ page.item.selected == true ? 'current' : '' }}">
+                        {{ page.item.label }}
+                    </a>
+                </li>
             {% endfor %}
-
-            {% if  (maxPage.pageNumber - extremePagesLimit) > (currentPage.pageNumber + nearbyPagesLimit) %}
-                <li class="ellipsis" aria-hidden="true"></li>
-            {% endif %}
-
-            {% for i in range(maxPage.pageNumber - extremePagesLimit + 1, maxPage.pageNumber) if ( i > currentPage.pageNumber + nearbyPagesLimit ) %}
-                {% set currentPageUri = 'page=' ~ maxPage.pageNumber %}
-                {% set newPageUri = 'page=' ~ i %}
-                <li><a href="{{ maxPage.item.url | replace({(currentPageUri): newPageUri}) }}">{{ i }}</a></li>
-            {% endfor %}
-
-            <li class="pagination-next"><a href="{{ nextPage.item.url }}">{{ 'pagination.next' | trans }}</a></li>
-        {% elseif showAlwaysFirstAndLast %}
-            <li class="pagination-next disabled">{{ 'pagination.next' | trans }}</li>
         {% endif %}
+
+        {% if paging.nextPage is defined and paging.nextPage.item != null %}
+            <li class="pagination-next">
+                <a href="{{ paging.nextPage.item.url }}">
+                    {{ paging.nextPage.item.label }}
+                </a>
+            </li>
+        {%  endif %}
     </ul>
-{% endspaceless %}
+{% endif %}

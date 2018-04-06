@@ -8,6 +8,7 @@
 namespace SprykerEco\Yves\FactFinder\Controller;
 
 use Generated\Shared\Transfer\FactFinderSdkSearchRequestTransfer;
+use Generated\Shared\Transfer\FactFinderSdkSearchResponseTransfer;
 use Spryker\Shared\Kernel\Store;
 use Spryker\Yves\Kernel\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -32,8 +33,9 @@ class SearchController extends AbstractController
             ->getFactFinderClient()
             ->search($factFinderSearchRequestTransfer);
 
-        if ($ffSearchResponseTransfer->getCampaignIterator() !== null && $ffSearchResponseTransfer->getCampaignIterator()->getHasRedirect()) {
-            return $this->redirectResponseExternal($ffSearchResponseTransfer->getCampaignIterator()->getRedirectUrl());
+        $redirectUrl = $this->redirect($ffSearchResponseTransfer);
+        if ($redirectUrl !== null) {
+            return $this->redirectResponseExternal($redirectUrl);
         }
 
         $feedbackForm = $this->getFactory()
@@ -51,5 +53,23 @@ class SearchController extends AbstractController
             'page' => isset($requestArray['page']) ? $requestArray['page'] : '',
             'feedbackForm' => $feedbackForm->createView(),
         ];
+    }
+
+    /**
+     * @param \Generated\Shared\Transfer\FactFinderSdkSearchResponseTransfer $factFinderSdkSearchResponseTransfer
+     *
+     * @return null|string
+     */
+    protected function redirect(FactFinderSdkSearchResponseTransfer $factFinderSdkSearchResponseTransfer)
+    {
+        if ($factFinderSdkSearchResponseTransfer->getCampaignIterator() !== null && $factFinderSdkSearchResponseTransfer->getCampaignIterator()->getHasRedirect()) {
+            return $factFinderSdkSearchResponseTransfer->getCampaignIterator()->getRedirectUrl();
+        }
+
+        if ($factFinderSdkSearchResponseTransfer->getSearchRedirect() !== null && $factFinderSdkSearchResponseTransfer->getSearchRedirect()->getRedirect() === true) {
+            return $factFinderSdkSearchResponseTransfer->getSearchRedirect()->getUrl();
+        }
+
+        return null;
     }
 }
