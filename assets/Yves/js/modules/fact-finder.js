@@ -11,13 +11,8 @@ var suggestionsBox = require('./fact-finder-suggestions-box');
 var track = require('./fact-finder-track');
 
 function init(config) {
-    $('.fact-finder-sort-action').click(function(event){
-        event.preventDefault();
-
-        var url = $('.fact-finder-sort-options').val();
-        var productsPerPage = $('.fact-finder-products-per-page').val();
-
-        window.location = url + '&productsPerPage=' + productsPerPage;
+    $('.fact-finder-products-per-page, .fact-finder-sort-options').change(function(event){
+        window.location = $(event.target).val();
     });
 
     $('.fact-finder-range-filter').click(function(event){

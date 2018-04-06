@@ -66,6 +66,9 @@ var suggestionsBox = {
         }
 
         $.each(item, function (index, value) {
+            if (typeof value == 'object') {
+                value = JSON.stringify(value);
+            }
             categoryTemplateHtml = categoryTemplateHtml.replace(':' + index, value);
         });
 
