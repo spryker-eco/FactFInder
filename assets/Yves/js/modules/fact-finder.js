@@ -82,9 +82,11 @@ function init(config) {
         suggestionsBox.showSuggestionsBox(false);
     });
 
-    $(document).on('click','.fact-finder-track', function(event) {
-        var data = $(event.currentTarget).data('tracking');
-        track.query(data);
+    $(document).on('mousedown','.fact-finder-track', function(event) {
+        if (event.which === 1 || event.which === 2) {
+            var data = $(event.currentTarget).data('tracking');
+            track.query(data);
+        }
     });
 
     $(document).on('click','.fact-finder-feedback-send', function(event) {
@@ -105,15 +107,17 @@ function init(config) {
     });
 
 
-    $(document).on('click','.ff-suggestion-box a', function(event) {
-        event.preventDefault();
+    $(document).on('mousedown','.ff-suggestion-box a', function(event) {
+        if (event.which === 1 || event.which === 2) {
+            event.preventDefault();
 
-        var link = $(event.target).closest('a');
-        var url = link.attr('href');
-        var trackingData = link.data('tracking');
+            var link = $(event.target).closest('a');
+            var url = link.attr('href');
+            var trackingData = link.data('tracking');
 
-        track.query(trackingData);
-        window.location.href = url;
+            track.query(trackingData);
+            window.location.href = url;
+        }
     });
 }
 

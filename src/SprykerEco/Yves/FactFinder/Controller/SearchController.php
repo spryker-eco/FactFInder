@@ -11,6 +11,7 @@ use Generated\Shared\Transfer\FactFinderSdkSearchRequestTransfer;
 use Generated\Shared\Transfer\FactFinderSdkSearchResponseTransfer;
 use Spryker\Shared\Kernel\Store;
 use Spryker\Yves\Kernel\Controller\AbstractController;
+use SprykerEco\Shared\FactFinder\FactFinderConstants;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -27,6 +28,7 @@ class SearchController extends AbstractController
     {
         $factFinderSearchRequestTransfer = new FactFinderSdkSearchRequestTransfer();
         $requestArray = $request->query->all();
+        $requestArray[FactFinderConstants::REQUEST_PARAMETER_SID] = $request->getSession()->getId();
         $factFinderSearchRequestTransfer->setRequest($requestArray);
 
         $ffSearchResponseTransfer = $this->getFactory()
