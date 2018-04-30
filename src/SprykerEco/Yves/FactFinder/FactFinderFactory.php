@@ -49,7 +49,8 @@ class FactFinderFactory extends AbstractFactory
     public function createProductCampaignsDataProvider()
     {
         return new ProductCampaignsDataProvider(
-            $this->getFactFinderClient()
+            $this->getFactFinderClient(),
+            $this->getSessionClient()
         );
     }
 
@@ -59,7 +60,8 @@ class FactFinderFactory extends AbstractFactory
     public function createShoppingCartCampaignsDataProvider()
     {
         return new ShoppingCartCampaignsDataProvider(
-            $this->getFactFinderClient()
+            $this->getFactFinderClient(),
+            $this->getSessionClient()
         );
     }
 

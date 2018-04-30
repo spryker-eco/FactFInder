@@ -30,10 +30,10 @@ class CampaignController extends AbstractController
             ->getFactFinderClient()
             ->getProductCampaigns($factFinderProductCampaignRequestTransfer);
 
-        if (!$factFinderProductCampaignResponseTransfer->getCampaigns()) {
+        if (!$factFinderProductCampaignResponseTransfer->getCampaignIterator()) {
             return $this->jsonResponse(null, 400);
         }
-        $campaigns = $factFinderProductCampaignResponseTransfer->getCampaigns();
+        $campaigns = $factFinderProductCampaignResponseTransfer->getCampaignIterator();
 
         return $this->jsonResponse($campaigns);
     }
