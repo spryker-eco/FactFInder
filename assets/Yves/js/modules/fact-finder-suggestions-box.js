@@ -17,20 +17,26 @@ var suggestionsBox = {
         this.clearProductSuggestionsBlock();
         this.clearCategoriesSuggestionsBlock();
         this.clearSearchTermsSuggestionsBlock();
+        this.clearBrandsSuggestionsBlock();
         this.resetCursorPosition();
 
         $.each(objectsList, function (i, item) {
-            if (item.type == 'productName') {
+            if (item.type ===  'productName') {
                 var productTemplateHtml = suggestionsBox.getProductTemplateHtml(item);
                 $('.ff-products').append(productTemplateHtml);
                 return true;
             }
-            if (item.type == 'category') {
+            if (item.type === 'category') {
                 var categoryTemplateHtml = suggestionsBox.getCategoryTemplateHtml(item, queryText);
                 $('.ff-categories').append(categoryTemplateHtml);
                 return true;
             }
-            if (item.type == 'searchTerm') {
+            if (item.type === 'brand') {
+                var brandTemplateHtml = suggestionsBox.getBrandTemplateHtml(item, queryText);
+                $('.ff-brands').append(brandTemplateHtml);
+                return true;
+            }
+            if (item.type === 'searchTerm') {
                 var searchTermsTemplateHtml = suggestionsBox.getSearchTermsTemplateHtml(item, queryText);
                 $('.ff-search-terms').append(searchTermsTemplateHtml);
                 return true;
@@ -41,50 +47,52 @@ var suggestionsBox = {
         this.showSuggestionsBox(true);
     },
 
-    getProductTemplateHtml: function (item) {
-        var productTemplate = $('#suggestions-box-row').clone();
-        var productTemplateHtml = $(productTemplate).prop('innerHTML');
-        item.url = item.attributes.deeplink;
+    getBoxRowHtml: function () {
+        var template = $('#suggestions-box-row').clone();
+        return $(template).prop('innerHTML');
+    },
 
+    replaceItemsInBoxRowHtml: function (item, template) {
         $.each(item, function (index, value) {
-            if (typeof value == 'object') {
+            if (typeof value === 'object') {
                 value = JSON.stringify(value);
             }
-            productTemplateHtml = productTemplateHtml.replace(':' + index, value);
+            template = template.replace(':' + index, value);
         });
 
-        return productTemplateHtml;
+        return template;
+    },
+
+    getProductTemplateHtml: function (item) {
+        var productTemplateHtml = this.getBoxRowHtml();
+        item.url = item.attributes.deeplink;
+
+        return this.replaceItemsInBoxRowHtml(item, productTemplateHtml);
     },
 
     getCategoryTemplateHtml: function (item, queryText) {
-        var categoryTemplate = $('#suggestions-box-row').clone();
-        var categoryTemplateHtml = $(categoryTemplate).prop('innerHTML');
+        var categoryTemplateHtml = this.getBoxRowHtml();
         item.url = this.constructUrl(item.url);
 
-        if (item.attributes.parentCategory != undefined && item.attributes.parentCategory != "") {
-            item.name = item.attributes.parentCategory + " > " + item.name;
+        if (item.attributes.parentCategory !== undefined && item.attributes.parentCategory !== "") {
+            item.name = decodeURIComponent(item.attributes.parentCategory) + " > " + decodeURIComponent(item.name);
         }
 
-        $.each(item, function (index, value) {
-            if (typeof value == 'object') {
-                value = JSON.stringify(value);
-            }
-            categoryTemplateHtml = categoryTemplateHtml.replace(':' + index, value);
-        });
+        return this.replaceItemsInBoxRowHtml(item, categoryTemplateHtml);
+    },
 
-        return categoryTemplateHtml;
+    getBrandTemplateHtml: function (item, queryText) {
+        var brandTemplateHtml = this.getBoxRowHtml();
+        item.url = this.constructUrl(item.url);
+
+        return this.replaceItemsInBoxRowHtml(item, brandTemplateHtml);
     },
 
     getSearchTermsTemplateHtml: function (item, queryText) {
-        var searchTermsTemplate = $('#suggestions-box-search-term-row').clone();
-        var searchTermsTemplateHtml = searchTermsTemplate.prop('innerHTML');
+        var searchTermsTemplateHtml = this.getBoxRowHtml();;
         item.url = this.constructUrl(item.url);
 
-        $.each(item, function (index, value) {
-            searchTermsTemplateHtml = searchTermsTemplateHtml.replace(':' + index, value);
-        });
-
-        return searchTermsTemplateHtml;
+        return this.replaceItemsInBoxRowHtml(item, searchTermsTemplateHtml);
     },
 
     clearProductSuggestionsBlock: function () {
@@ -93,6 +101,10 @@ var suggestionsBox = {
 
     clearCategoriesSuggestionsBlock: function () {
         $('.ff-categories').html('');
+    },
+
+    clearBrandsSuggestionsBlock: function () {
+        $('.ff-brands').html('');
     },
 
     clearSearchTermsSuggestionsBlock: function () {
