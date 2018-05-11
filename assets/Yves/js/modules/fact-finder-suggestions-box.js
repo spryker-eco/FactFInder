@@ -152,7 +152,11 @@ var suggestionsBox = {
 
         if (link != undefined) {
             var url = link.attr('href');
-            var trackingData = JSON.parse(link.data('tracking'));
+            var trackingData = link.data('tracking');
+
+        if (typeof trackingData !== 'object' && trackingData !== undefined) {
+                trackingData = JSON.parse(trackingData);
+            }
 
             if (url != undefined) {
                 tracking.query(trackingData);
