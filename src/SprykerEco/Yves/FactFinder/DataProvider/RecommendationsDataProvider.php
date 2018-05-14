@@ -24,7 +24,7 @@ class RecommendationsDataProvider extends AbstractDataProvider implements Recomm
         $factFinderRecommendationRequestTransfer = new FactFinderSdkRecommendationRequestTransfer();
         $factFinderRecommendationRequestTransfer->fromArray($parameters, true);
 
-        if ($factFinderRecommendationRequestTransfer->getId() === null) {
+        if ($factFinderRecommendationRequestTransfer->getId() === null || empty($factFinderRecommendationRequestTransfer->getId())) {
             return $recommendations;
         }
 
