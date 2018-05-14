@@ -11,15 +11,16 @@
                     priceValue: record.fields.Price,
                     imageUrl: record.fields.ImageURL,
                     trackInfo: {
-                    id: record.id,
-                    masterId: record.fields.MasterProductNumber,
-                    event: 'click',
-                    query: query,
-                    pos: record.position,
-                    origPos: record.originalPosition,
-                    page: page != null ? page : 1,
-                    origPageSize: factFinder.result.records | length
-                }
+                        id: record.id,
+                        masterId: record.fields.MasterProductNumber,
+                        event: 'click',
+                        query: query,
+                        pos: record.position,
+                        origPos: record.originalPosition,
+                        page: page != null ? page : 1,
+                        pageSize: factFinder.result.records | length,
+                        origPageSize: factFinder.resultsPerPageOptions.selectedOption.label
+                    }
             } %}
         </div>
     {% endfor %}
