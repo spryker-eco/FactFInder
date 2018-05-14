@@ -180,11 +180,13 @@ var suggestionsBox = {
     constructUrl: function (itemUrl) {
         var uri = $('#fact-finder-search-input').data('category-uri');
         var query = this.getParamsFromUrl(itemUrl);
-        var urlQuery = '?';
+        var searchInput = $('#ffSearchInput').val();
+        var urlQuery = '&';
 
         for (var index in query) {
             urlQuery += encodeURIComponent(index) + '=' + encodeURIComponent(query[index]) + '&';
         }
+        urlQuery += 'userInput=' + searchInput;
 
         return uri + urlQuery;
     },

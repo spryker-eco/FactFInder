@@ -1,9 +1,9 @@
 {% if factFinderSearchUri is not defined -%}
-    {% set factFinderSearchUri = '/fact-finder' %}
+    {% set factFinderSearchUri = '/fact-finder?queryFromSuggest=true' %}
 {% endif %}
 
 {% if factFinderCategoryUri is not defined -%}
-    {% set factFinderCategoryUri = '/fact-finder' %}
+    {% set factFinderCategoryUri = '/fact-finder?queryFromSuggest=true' %}
 {% endif %}
 
 {% if app.request.get('query') is defined and app.request.get('query') != '*' %}
