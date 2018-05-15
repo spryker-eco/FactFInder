@@ -19,12 +19,14 @@ function init(config) {
         event.preventDefault();
 
         var form = $(this).parents('form:first');
-        var minimum = $(form).find("input[name='min']").val();
-        var maximum = $(form).find("input[name='max']").val();
-        var previousMinimum = $(form).find("input[name='min']").attr('data-old-value');
-        var previousMaximum = $(form).find("input[name='max']").attr('data-old-value');
+        var minimumInput = $(form).find("input[name='min']");
+        var maximumInput = $(form).find("input[name='max']");
+        var minimum = minimumInput.val();
+        var maximum = maximumInput.val();
+        var previousMinimum = minimumInput.attr('data-old-value');
+        var previousMaximum = maximumInput.attr('data-old-value');
         var formAction = $(form).attr('action');
-        var filterName = $(form).data('filter-name');
+        var filterName = 'filterPriceSlider';
 
         formAction = formAction.replace(
             filterName + '=' + previousMinimum + '-' + previousMaximum,
@@ -32,27 +34,37 @@ function init(config) {
         );
 
         $(form).attr('action', formAction);
-        $(form).find("input[name='min']").attr('data-old-value', minimum);
-        $(form).find("input[name='max']").attr('data-old-value', maximum);
+        minimumInput.attr('data-old-value', minimum);
+        maximumInput.attr('data-old-value', maximum);
         window.location = formAction;
     });
 
-    $('.fact-finder-range-filter-input-of, .fact-finder-range-filter-input-to').change(function(event){
+    $('.fact-finder-range-filter-input-of').change(function(event){
         var input = $(event.target);
+        var maximumInput = $('.fact-finder-range-filter-input-to');
 
-        if (parseFloat(input.val()) > parseFloat(input.attr('max'))) {
-            input.val(input.attr('max'));
+        if (parseFloat(input.val()) > parseFloat(maximumInput.val())) {
+            input.val(maximumInput.val());
+            return;
         }
 
-        if (parseFloat(input.val()) < parseFloat(input.attr('min'))) {
-            input.val(input.attr('min'));
+        if (parseFloat(input.val()) < parseFloat(input.attr('data-absolute-minimum'))) {
+            input.val(input.attr('data-absolute-minimum'));
+        }
+    });
+
+    $('.fact-finder-range-filter-input-to').change(function(event){
+        var input = $(event.target);
+        var minimumInput = $('.fact-finder-range-filter-input-of');
+
+        if (parseFloat(input.val()) < parseFloat(minimumInput.val())) {
+            input.val(minimumInput.val());
+            return;
         }
 
-        var ofInput = $('.fact-finder-range-filter-input-of');
-        var toInput = $('.fact-finder-range-filter-input-to');
-
-        ofInput.attr('max', toInput.val());
-        toInput.attr('min', ofInput.val());
+        if (parseFloat(input.val()) > parseFloat(input.attr('data-absolute-maximum'))) {
+            input.val(input.attr('data-absolute-maximum'));
+        }
     });
 
     $("#ffSearchInput").keyup(function(e){
