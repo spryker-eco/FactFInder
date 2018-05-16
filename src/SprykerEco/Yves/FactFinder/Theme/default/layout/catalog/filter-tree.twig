@@ -6,6 +6,15 @@
                 <tr {% if filter.item.selected %}style="background-color: #88f2a5;"{% endif %}>
                     <td>
                         <a href="{{ filter.item.url }}">
+                            {% if filter.item.selected %}
+                                <span>-</span>
+                            {% else %}
+                                {% if filter.clusterLevel > 0 %}
+                                    <span style="margin-left: 10px;"></span>
+                                {% endif %}
+                                <span>+</span>
+                            {% endif %}
+
                             {{ filter.item.label }} {{ filterGroup.unit }}
                             {% if filter.matchCount %}
                                 ({{ filter.matchCount }})
