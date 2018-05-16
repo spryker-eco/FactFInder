@@ -32,10 +32,12 @@
                 <div class="row">
                     <div class="small-12 columns">
 
-                        {% include '@FactFinder/campaigns/partials/feedback.twig' with {
-                            campaigns: searchResponse.campaignIterator.campaigns,
-                            feedbackBlockPositionId: 'above searchbar',
-                        } %}
+                        {% if searchResponse.campaignIterator %}
+                            {% include '@FactFinder/campaigns/partials/feedback.twig' with {
+                                campaigns: searchResponse.campaignIterator.campaigns,
+                                feedbackBlockPositionId: 'above searchbar',
+                            } %}
+                        {% endif %}
 
                         <div class="callout">
                             <div class="row align-middle align-justify">
@@ -58,17 +60,21 @@
                             </div>
                         </div>
 
-                        {% include '@FactFinder/campaigns/partials/feedback.twig' with {
-                            campaigns: searchResponse.campaignIterator.campaigns,
-                            feedbackBlockPositionId: 'below searchbar',
-                        } %}
+                        {% if searchResponse.campaignIterator %}
+                            {% include '@FactFinder/campaigns/partials/feedback.twig' with {
+                                campaigns: searchResponse.campaignIterator.campaigns,
+                                feedbackBlockPositionId: 'below searchbar',
+                            } %}
+                        {% endif %}
 
                         {% include "@FactFinder/layout/partials/navigation.twig" %}
 
-                        {% include '@FactFinder/campaigns/partials/feedback.twig' with {
-                            campaigns: searchResponse.campaignIterator.campaigns,
-                            feedbackBlockPositionId: 'above breadcrumb',
-                        } %}
+                        {% if searchResponse.campaignIterator %}
+                            {% include '@FactFinder/campaigns/partials/feedback.twig' with {
+                                campaigns: searchResponse.campaignIterator.campaigns,
+                                feedbackBlockPositionId: 'above breadcrumb',
+                            } %}
+                        {% endif %}
 
                         <div class="callout">
                             <nav role="navigation">
@@ -78,10 +84,12 @@
                             </nav>
                         </div>
 
-                        {% include '@FactFinder/campaigns/partials/feedback.twig' with {
-                            campaigns: searchResponse.campaignIterator.campaigns,
-                            feedbackBlockPositionId: 'below breadcrumb',
-                        } %}
+                        {% if searchResponse.campaignIterator %}
+                            {% include '@FactFinder/campaigns/partials/feedback.twig' with {
+                                campaigns: searchResponse.campaignIterator.campaigns,
+                                feedbackBlockPositionId: 'below breadcrumb',
+                            } %}
+                        {% endif %}
 
                         {% include "@FactFinder/layout/partials/flash-messages.twig" %}
                     </div>
