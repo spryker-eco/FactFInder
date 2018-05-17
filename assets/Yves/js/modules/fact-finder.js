@@ -110,7 +110,7 @@ function init(config) {
         var data = {
             "id": "none",
             "event": "feedback",
-            "query": query,
+            "query": query !== '' ? query : '*',
             "positive": positive,
             "message": message
         };
