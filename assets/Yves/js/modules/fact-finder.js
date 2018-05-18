@@ -81,7 +81,7 @@ function init(config) {
                 suggestionsBox.goTo(e);
                 break;
 
-            default: factFinderSuggestions.query($("#ffSearchInput").val());
+            default: factFinderSuggestions.query(e.target.value);
                 break;
         }
     });
