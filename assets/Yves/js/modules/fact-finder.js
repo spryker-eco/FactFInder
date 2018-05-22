@@ -67,24 +67,11 @@ function init(config) {
         }
     });
 
-    $("#ffSearchInput").keyup(function(e){
-        switch(e.which) {
-            case 38: // up
-                suggestionsBox.highlightRow(-1);
-                break;
+    $("#ffSearchInput").keyup(_.debounce(function(event) {
+        keyupSuggestionsHandler(event);
+    }, 500));
 
-            case 40: // down
-                suggestionsBox.highlightRow(1);
-                break;
-
-            case 13: // enter
-                suggestionsBox.goTo(e);
-                break;
-
-            default: factFinderSuggestions.query(e.target.value);
-                break;
-        }
-    });
+    $("#ffSearchInput").keyup(keyupNavigationHandler(event));
 
     $("#ffSearchInput").click(function(){
         factFinderSuggestions.query($("#ffSearchInput").val());
@@ -131,6 +118,28 @@ function init(config) {
             window.location.href = url;
         }
     });
+}
+
+function keyupNavigationHandler(event) {
+    switch(event.which) {
+        case 38: // up
+            suggestionsBox.highlightRow(-1);
+            break;
+
+        case 40: // down
+            suggestionsBox.highlightRow(1);
+            break;
+
+        case 13: // enter
+            suggestionsBox.goTo(event);
+            break;
+    }
+}
+
+function keyupSuggestionsHandler(event) {
+    if (event.which !== 38 && event.which !== 40 && event.which !== 13) {
+        factFinderSuggestions.query(event.target.value);
+    }
 }
 
 module.exports = {
