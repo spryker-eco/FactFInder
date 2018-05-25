@@ -1,4 +1,4 @@
-<form method="GET" action="{{ filter.item.url }}" data-filter-name="filter{{ filterGroup.name }}">
+<form method="GET" action="{{ filter.item.url }}" data-filter-name="filter{{ filter.fieldName }}">
     <div class="callout">
         <h3>{{ filterGroup.name }}</h3>
         <div class="row">
@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="small-6 columns">
                         <label>
-                            {{ "catalog.filter.rangeFrom"|trans }}
+                            {{ "catalog.filter.rangeFrom"|trans }} {{ filterGroup.unit }}
                             <input type="number" name="min" class="fact-finder-range-filter-input-of"
                                    value="{{ filter.selectedMinimum }}"
                                    required="required"
@@ -21,7 +21,7 @@
                     </div>
                     <div class="small-6 columns">
                         <label>
-                            {{ "catalog.filter.rangeTo"|trans }}
+                            {{ "catalog.filter.rangeTo"|trans }} {{ filterGroup.unit }}
                             <input type="number" name="max" class="fact-finder-range-filter-input-to"
                                    value="{{ filter.selectedMaximum }}"
                                    required="required"
@@ -32,6 +32,7 @@
                                    data-absolute-minimum="{{ filter.absoluteMinimum }}"
                                    data-absolute-maximum="{{ filter.absoluteMaximum }}"
                             />
+                            {{ filterGroup.unit }}
                         </label>
                     </div>
                 </div>

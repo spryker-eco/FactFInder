@@ -3,9 +3,10 @@
         <h3>{{ filterGroup.name }}</h3>
         <table class="table">
             {% for filter in filterGroup.getFilters %}
-                <tr {% if filter.item.selected %}style="background-color: #88f2a5;"{% endif %}>
+                <tr>
                     <td>
                         <a href="{{ filter.item.url }}">
+                            <input type="checkbox" class="fact-finder-filter-checkbox" {% if filter.item.selected %} checked {% endif %}>
                             {{ filter.item.label }} {{ filterGroup.unit }}
                             {% if filter.matchCount %}
                                 ({{ filter.matchCount }})
