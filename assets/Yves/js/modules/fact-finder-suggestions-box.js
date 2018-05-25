@@ -24,21 +24,25 @@ var suggestionsBox = {
             if (item.type ===  'productName') {
                 var productTemplateHtml = suggestionsBox.getProductTemplateHtml(item);
                 $('.ff-products').append(productTemplateHtml);
+                $('.ff-products').removeClass('is-hidden');
                 return true;
             }
             if (item.type === 'category') {
                 var categoryTemplateHtml = suggestionsBox.getCategoryTemplateHtml(item, queryText);
                 $('.ff-categories').append(categoryTemplateHtml);
+                $('.ff-categories').removeClass('is-hidden');
                 return true;
             }
             if (item.type === 'brand') {
                 var brandTemplateHtml = suggestionsBox.getBrandTemplateHtml(item, queryText);
                 $('.ff-brands').append(brandTemplateHtml);
+                $('.ff-brands').removeClass('is-hidden');
                 return true;
             }
             if (item.type === 'searchTerm') {
                 var searchTermsTemplateHtml = suggestionsBox.getSearchTermsTemplateHtml(item, queryText);
                 $('.ff-search-terms').append(searchTermsTemplateHtml);
+                $('.ff-search-terms').removeClass('is-hidden');
                 return true;
             }
         });
@@ -96,19 +100,23 @@ var suggestionsBox = {
     },
 
     clearProductSuggestionsBlock: function () {
-        $('.ff-products').html('');
+        $('.ff-products > a').remove();
+        $('.ff-products').addClass('is-hidden');
     },
 
     clearCategoriesSuggestionsBlock: function () {
-        $('.ff-categories').html('');
+        $('.ff-categories > a').remove();
+        $('.ff-categories').addClass('is-hidden');
     },
 
     clearBrandsSuggestionsBlock: function () {
-        $('.ff-brands').html('');
+        $('.ff-brands > a').remove();
+        $('.ff-brands').addClass('is-hidden');
     },
 
     clearSearchTermsSuggestionsBlock: function () {
-        $('.ff-search-terms').html('');
+        $('.ff-search-terms > a').remove();
+        $('.ff-search-terms').addClass('is-hidden');
     },
 
     showSuggestionsBox: function (show) {
