@@ -68,6 +68,10 @@ class SearchController extends AbstractController
             return $factFinderSdkSearchResponseTransfer->getCampaignIterator()->getRedirectUrl();
         }
 
+        if ($factFinderSdkSearchResponseTransfer->getSearchRedirect() !== null && $factFinderSdkSearchResponseTransfer->getSearchRedirect()->getRedirect() === true) {
+            return $factFinderSdkSearchResponseTransfer->getSearchRedirect()->getUrl();
+        }
+
         return null;
     }
 }
