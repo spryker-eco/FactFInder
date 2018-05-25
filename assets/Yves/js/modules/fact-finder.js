@@ -15,25 +15,29 @@ function init(config) {
         window.location = $(event.target).val();
     });
 
+    $('.fact-finder-filter-checkbox').change(function (event) {
+        $(event.target).parent()[0].click();
+    });
+
     $('.fact-finder-range-filter').click(function(event){
         event.preventDefault();
 
         var form = $(this).parents('form:first');
-        var minimumInput = $(form).find("input[name='min']");
-        var maximumInput = $(form).find("input[name='max']");
+        var minimumInput = form.find("input[name='min']");
+        var maximumInput = form.find("input[name='max']");
         var minimum = minimumInput.val();
         var maximum = maximumInput.val();
         var previousMinimum = minimumInput.attr('data-old-value');
         var previousMaximum = maximumInput.attr('data-old-value');
         var formAction = $(form).attr('action');
-        var filterName = 'filterPriceSlider';
+        var filterName = form.attr('data-filter-name');
 
         formAction = formAction.replace(
             filterName + '=' + previousMinimum + '-' + previousMaximum,
             filterName + '=' + minimum + '-' + maximum
         );
 
-        $(form).attr('action', formAction);
+        form.attr('action', formAction);
         minimumInput.attr('data-old-value', minimum);
         maximumInput.attr('data-old-value', maximum);
         window.location = formAction;
@@ -41,7 +45,8 @@ function init(config) {
 
     $('.fact-finder-range-filter-input-of').change(function(event){
         var input = $(event.target);
-        var maximumInput = $('.fact-finder-range-filter-input-to');
+        var form = $(this).parents('form:first');
+        var maximumInput = form.find('.fact-finder-range-filter-input-to');
 
         if (parseFloat(input.val()) > parseFloat(maximumInput.val())) {
             input.val(maximumInput.val());
@@ -55,7 +60,8 @@ function init(config) {
 
     $('.fact-finder-range-filter-input-to').change(function(event){
         var input = $(event.target);
-        var minimumInput = $('.fact-finder-range-filter-input-of');
+        var form = $(this).parents('form:first');
+        var minimumInput = form.find('.fact-finder-range-filter-input-of');
 
         if (parseFloat(input.val()) < parseFloat(minimumInput.val())) {
             input.val(minimumInput.val());
@@ -67,11 +73,13 @@ function init(config) {
         }
     });
 
+    $("#ffSearchInput").keyup(function (event) {
+        keyupNavigationHandler(event);
+    });
+
     $("#ffSearchInput").keyup(_.debounce(function(event) {
         keyupSuggestionsHandler(event);
     }, 500));
-
-    $("#ffSearchInput").keyup(keyupNavigationHandler(event));
 
     $("#ffSearchInput").click(function(){
         factFinderSuggestions.query($("#ffSearchInput").val());
@@ -123,10 +131,12 @@ function init(config) {
 function keyupNavigationHandler(event) {
     switch(event.which) {
         case 38: // up
+            console.log('up');
             suggestionsBox.highlightRow(-1);
             break;
 
         case 40: // down
+            console.log('down');
             suggestionsBox.highlightRow(1);
             break;
 
