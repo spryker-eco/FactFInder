@@ -28,7 +28,7 @@ class SearchController extends AbstractController
     {
         $factFinderSearchRequestTransfer = new FactFinderSdkSearchRequestTransfer();
         $requestArray = $request->query->all();
-        $requestArray[FactFinderConstants::REQUEST_PARAMETER_SID] = $request->getSession()->getId();
+        $requestArray[FactFinderConstants::REQUEST_PARAMETER_SID] = $request->cookies->get(FactFinderConstants::COOKIE_SID_NAME);
         $factFinderSearchRequestTransfer->setRequest($requestArray);
 
         $ffSearchResponseTransfer = $this->getFactory()

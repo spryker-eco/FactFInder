@@ -9,6 +9,7 @@ namespace SprykerEco\Yves\FactFinder\Controller;
 
 use Generated\Shared\Transfer\FactFinderSdkSuggestRequestTransfer;
 use Spryker\Yves\Kernel\Controller\AbstractController;
+use SprykerEco\Shared\FactFinder\FactFinderConstants;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -27,6 +28,7 @@ class SuggestionsController extends AbstractController
         $query = $request->query->get('query', '*');
 
         $factFinderSuggestRequestTransfer->setQuery($query);
+        $factFinderSuggestRequestTransfer->setSid($request->cookies->get(FactFinderConstants::COOKIE_SID_NAME));
 
         $response = $this->getFactory()
             ->getFactFinderClient()

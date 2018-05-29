@@ -9,6 +9,7 @@ namespace SprykerEco\Yves\FactFinder\Controller;
 
 use Generated\Shared\Transfer\FactFinderSdkTrackingRequestTransfer;
 use Spryker\Yves\Kernel\Controller\AbstractController;
+use SprykerEco\Shared\FactFinder\FactFinderConstants;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -26,8 +27,7 @@ class TrackController extends AbstractController
         $factFinderTrackingRequestTransfer = new FactFinderSdkTrackingRequestTransfer();
         $factFinderTrackingRequestTransfer->fromArray($request->query->all());
 
-        $sessionId = $request->getSession()->getId();
-        $factFinderTrackingRequestTransfer->setSid($sessionId);
+        $this->setFactFinderSid($request, $factFinderTrackingRequestTransfer);
 
         $factFinderTrackingResponseTransfer = $this->getFactory()
             ->getFactFinderClient()
@@ -38,5 +38,15 @@ class TrackController extends AbstractController
         }
 
         return $this->jsonResponse();
+    }
+
+    /**
+     * @param Request $request
+     * @param FactFinderSdkTrackingRequestTransfer $factFinderTrackingResponseTransfer
+     */
+    protected function setFactFinderSid(Request $request, FactFinderSdkTrackingRequestTransfer $factFinderTrackingResponseTransfer)
+    {
+        $sessionId = $request->cookies->get(FactFinderConstants::COOKIE_SID_NAME);
+        $factFinderTrackingResponseTransfer->setSid($sessionId);
     }
 }

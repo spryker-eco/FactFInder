@@ -60,7 +60,7 @@ class Tracker implements TrackerInterface
     {
         $trackingRequest = new FactFinderSdkTrackingRequestTransfer();
         $trackingRequest->setEvent(static::CHECKOUT_TRACK_EVENT_NAME);
-        $trackingRequest->setSid($quoteTransfer->getCustomer()->getSessionId());
+        $trackingRequest->setSid($quoteTransfer->getFactFinderSid());
         $trackingRequest->setMasterId($itemTransfer->getAbstractSku());
         $trackingRequest->setId($itemTransfer->getSku());
         $trackingRequest->setCount($itemTransfer->getQuantity());

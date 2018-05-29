@@ -8,17 +8,19 @@
 namespace SprykerEco\Yves\FactFinder\DataProvider;
 
 use Generated\Shared\Transfer\FactFinderSdkRecommendationRequestTransfer;
+use Symfony\Component\HttpFoundation\Request;
 
 class RecommendationsDataProvider extends AbstractDataProvider implements RecommendationsDataProviderInterface
 {
     /**
      * @param array $parameters
+     * @param Request $request
      *
      * @return \Generated\Shared\Transfer\StorageProductAbstractRelationTransfer[]
      */
-    public function buildTemplateData(array $parameters)
+    public function buildTemplateData(array $parameters, Request $request)
     {
-        $this->addSessionId($parameters);
+        $this->addSessionId($parameters, $request);
         $recommendations = [];
 
         $factFinderRecommendationRequestTransfer = new FactFinderSdkRecommendationRequestTransfer();

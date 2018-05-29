@@ -34,10 +34,10 @@ class FactFinderTwigServiceProvider extends AbstractPlugin implements ServicePro
     public function register(Application $app)
     {
         $app['twig'] = $app->share(
-            $app->extend('twig', function (Twig_Environment $twig) {
+            $app->extend('twig', function (Twig_Environment $twig) use ($app) {
                 $twig->addFunction(
                     'fact_finder_recommendations',
-                    $this->createRecommendationsFunction($twig)
+                    $this->createRecommendationsFunction($twig, $app)
                 );
 
                 return $twig;
@@ -45,10 +45,10 @@ class FactFinderTwigServiceProvider extends AbstractPlugin implements ServicePro
         );
 
         $app['twig'] = $app->share(
-            $app->extend('twig', function (Twig_Environment $twig) {
+            $app->extend('twig', function (Twig_Environment $twig) use ($app) {
                 $twig->addFunction(
                     'fact_finder_product_campaigns',
-                    $this->createProductCampaignsFunction($twig)
+                    $this->createProductCampaignsFunction($twig, $app)
                 );
 
                 return $twig;
@@ -56,10 +56,10 @@ class FactFinderTwigServiceProvider extends AbstractPlugin implements ServicePro
         );
 
         $app['twig'] = $app->share(
-            $app->extend('twig', function (Twig_Environment $twig) {
+            $app->extend('twig', function (Twig_Environment $twig) use ($app) {
                 $twig->addFunction(
                     'fact_finder_shopping_cart_campaigns',
-                    $this->createShoppingCartCampaignsFunction($twig)
+                    $this->createShoppingCartCampaignsFunction($twig, $app)
                 );
 
                 return $twig;
@@ -70,13 +70,14 @@ class FactFinderTwigServiceProvider extends AbstractPlugin implements ServicePro
     /**
      * @param \Twig_Environment $twig
      *
+     * @param Application $app
      * @return \Twig_SimpleFunction
      */
-    protected function createRecommendationsFunction(Twig_Environment $twig)
+    protected function createRecommendationsFunction(Twig_Environment $twig, Application $app)
     {
         $options = ['is_safe' => ['html']];
 
-        return new Twig_SimpleFunction('fact_finder_recommendations', function (array $params, $templatePath) use ($twig) {
+        return new Twig_SimpleFunction('fact_finder_recommendations', function (array $params, $templatePath) use ($twig, $app) {
 
             $recommendationsDataProvider = $this->getFactory()
                 ->createRecommendationsDataProvider();
@@ -84,7 +85,7 @@ class FactFinderTwigServiceProvider extends AbstractPlugin implements ServicePro
             return $twig->render(
                 $templatePath,
                 [
-                    'productRecommendations' => $recommendationsDataProvider->buildTemplateData($params),
+                    'productRecommendations' => $recommendationsDataProvider->buildTemplateData($params, $app['request_stack']->getCurrentRequest()),
                     'params' => $params,
                 ]
             );
@@ -93,14 +94,15 @@ class FactFinderTwigServiceProvider extends AbstractPlugin implements ServicePro
 
     /**
      * @param \Twig_Environment $twig
+     * @param Application $app
      *
      * @return \Twig_SimpleFunction
      */
-    protected function createProductCampaignsFunction(Twig_Environment $twig)
+    protected function createProductCampaignsFunction(Twig_Environment $twig, Application $app)
     {
         $options = ['is_safe' => ['html']];
 
-        return new Twig_SimpleFunction('fact_finder_product_campaigns', function (array $params, $templatePath) use ($twig) {
+        return new Twig_SimpleFunction('fact_finder_product_campaigns', function (array $params, $templatePath) use ($twig, $app) {
 
             $productCampaignsDataProvider = $this->getFactory()
                 ->createProductCampaignsDataProvider();
@@ -108,7 +110,7 @@ class FactFinderTwigServiceProvider extends AbstractPlugin implements ServicePro
             return $twig->render(
                 $templatePath,
                 [
-                    'campaigns' => $productCampaignsDataProvider->buildTemplateData($params),
+                    'campaigns' => $productCampaignsDataProvider->buildTemplateData($params, $app['request_stack']->getCurrentRequest()),
                     'params' => $params,
                 ]
             );
@@ -118,13 +120,14 @@ class FactFinderTwigServiceProvider extends AbstractPlugin implements ServicePro
     /**
      * @param \Twig_Environment $twig
      *
+     * @param Application $app
      * @return \Twig_SimpleFunction
      */
-    protected function createShoppingCartCampaignsFunction(Twig_Environment $twig)
+    protected function createShoppingCartCampaignsFunction(Twig_Environment $twig, Application $app)
     {
         $options = ['is_safe' => ['html']];
 
-        return new Twig_SimpleFunction('fact_finder_shopping_cart_campaigns', function (array $params, $templatePath) use ($twig) {
+        return new Twig_SimpleFunction('fact_finder_shopping_cart_campaigns', function (array $params, $templatePath) use ($twig, $app) {
 
             $shoppingCartCampaignsDataProvider = $this->getFactory()
                 ->createShoppingCartCampaignsDataProvider();
@@ -132,7 +135,7 @@ class FactFinderTwigServiceProvider extends AbstractPlugin implements ServicePro
             return $twig->render(
                 $templatePath,
                 [
-                    'campaigns' => $shoppingCartCampaignsDataProvider->buildTemplateData($params),
+                    'campaigns' => $shoppingCartCampaignsDataProvider->buildTemplateData($params, $app['request_stack']->getCurrentRequest()),
                     'params' => $params,
                 ]
             );

@@ -7,12 +7,15 @@
 
 namespace SprykerEco\Yves\FactFinder\DataProvider;
 
+use Symfony\Component\HttpFoundation\Request;
+
 interface RecommendationsDataProviderInterface
 {
     /**
      * @param array $parameters
+     * @param Request $request
      *
      * @return \Generated\Shared\Transfer\StorageProductAbstractRelationTransfer[]
      */
-    public function buildTemplateData(array $parameters);
+    public function buildTemplateData(array $parameters, Request $request);
 }

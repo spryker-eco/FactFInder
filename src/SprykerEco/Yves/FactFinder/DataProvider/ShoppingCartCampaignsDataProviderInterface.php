@@ -7,12 +7,15 @@
 
 namespace SprykerEco\Yves\FactFinder\DataProvider;
 
+use Symfony\Component\HttpFoundation\Request;
+
 interface ShoppingCartCampaignsDataProviderInterface
 {
     /**
      * @param array $parameters
+     * @param Request $request
      *
      * @return \ArrayObject|\Generated\Shared\Transfer\FactFinderSdkDataCampaignTransfer[]
      */
-    public function buildTemplateData(array $parameters);
+    public function buildTemplateData(array $parameters, Request $request);
 }

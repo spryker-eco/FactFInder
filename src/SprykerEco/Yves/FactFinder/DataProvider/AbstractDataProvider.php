@@ -10,6 +10,7 @@ namespace SprykerEco\Yves\FactFinder\DataProvider;
 use SprykerEco\Shared\FactFinder\FactFinderConstants;
 use SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientInterface;
 use SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToSessionClientInterface;
+use Symfony\Component\HttpFoundation\Request;
 
 abstract class AbstractDataProvider
 {
@@ -37,13 +38,14 @@ abstract class AbstractDataProvider
 
     /**
      * @param array $parameters
+     * @param Request $request
      *
      * @return void
      */
-    protected function addSessionId(array &$parameters)
+    protected function addSessionId(array &$parameters, Request $request)
     {
         if (empty($parameters[FactFinderConstants::REQUEST_PARAMETER_SID])) {
-            $parameters[FactFinderConstants::REQUEST_PARAMETER_SID] = $this->sessionClient->getId();
+            $parameters[FactFinderConstants::REQUEST_PARAMETER_SID] = $request->cookies->get(FactFinderConstants::COOKIE_SID_NAME);
         }
     }
 }

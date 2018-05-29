@@ -11,4 +11,6 @@ interface FactFinderConstants
 {
     const REQUEST_PARAMETER_SID = 'sid';
     const REQUEST_PARAMETER_CART = 'cart';
+
+    const COOKIE_SID_NAME = 'fact-finder-uid';
 }
