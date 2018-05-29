@@ -92,6 +92,8 @@ function init(config) {
     $(document).on('mousedown','.fact-finder-track', function(event) {
         if (event.which === 1 || event.which === 2) {
             var data = $(event.currentTarget).data('tracking');
+            var query = $('.fact-finder-feedback-query').val();
+            data.query = query !== '' ? query : '*';
             track.query(data);
         }
     });
