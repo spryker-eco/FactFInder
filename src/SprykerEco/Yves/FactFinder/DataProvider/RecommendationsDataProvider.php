@@ -14,7 +14,7 @@ class RecommendationsDataProvider extends AbstractDataProvider implements Recomm
 {
     /**
      * @param array $parameters
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return \Generated\Shared\Transfer\StorageProductAbstractRelationTransfer[]
      */

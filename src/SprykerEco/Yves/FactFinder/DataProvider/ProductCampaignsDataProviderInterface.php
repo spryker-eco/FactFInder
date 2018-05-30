@@ -13,8 +13,8 @@ interface ProductCampaignsDataProviderInterface
 {
     /**
      * @param array $parameters
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
-     * @param Request $request
      * @return \Generated\Shared\Transfer\StorageProductAbstractRelationTransfer[]
      */
     public function buildTemplateData(array $parameters, Request $request);

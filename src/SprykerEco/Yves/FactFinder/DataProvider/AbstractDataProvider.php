@@ -38,7 +38,7 @@ abstract class AbstractDataProvider
 
     /**
      * @param array $parameters
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return void
      */

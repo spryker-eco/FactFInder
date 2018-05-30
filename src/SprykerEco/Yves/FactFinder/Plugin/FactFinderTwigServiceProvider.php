@@ -69,8 +69,8 @@ class FactFinderTwigServiceProvider extends AbstractPlugin implements ServicePro
 
     /**
      * @param \Twig_Environment $twig
+     * @param \Silex\Application $app
      *
-     * @param Application $app
      * @return \Twig_SimpleFunction
      */
     protected function createRecommendationsFunction(Twig_Environment $twig, Application $app)
@@ -94,7 +94,7 @@ class FactFinderTwigServiceProvider extends AbstractPlugin implements ServicePro
 
     /**
      * @param \Twig_Environment $twig
-     * @param Application $app
+     * @param \Silex\Application $app
      *
      * @return \Twig_SimpleFunction
      */
@@ -119,8 +119,8 @@ class FactFinderTwigServiceProvider extends AbstractPlugin implements ServicePro
 
     /**
      * @param \Twig_Environment $twig
+     * @param \Silex\Application $app
      *
-     * @param Application $app
      * @return \Twig_SimpleFunction
      */
     protected function createShoppingCartCampaignsFunction(Twig_Environment $twig, Application $app)

@@ -41,8 +41,10 @@ class TrackController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @param FactFinderSdkTrackingRequestTransfer $factFinderTrackingResponseTransfer
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     * @param \Generated\Shared\Transfer\FactFinderSdkTrackingRequestTransfer $factFinderTrackingResponseTransfer
+     *
+     * @return void
      */
     protected function setFactFinderSid(Request $request, FactFinderSdkTrackingRequestTransfer $factFinderTrackingResponseTransfer)
     {

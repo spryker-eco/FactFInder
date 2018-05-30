@@ -13,7 +13,7 @@ interface ShoppingCartCampaignsDataProviderInterface
 {
     /**
      * @param array $parameters
-     * @param Request $request
+     * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return \ArrayObject|\Generated\Shared\Transfer\FactFinderSdkDataCampaignTransfer[]
      */
