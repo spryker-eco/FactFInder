@@ -16,7 +16,7 @@
                         event: 'click',
                         query: query,
                         pos: record.position,
-                        origPos: record.originalPosition,
+                        origPos: record.originalPosition != null ? record.originalPosition : record.position,
                         page: page != null ? page : 1,
                         pageSize: factFinder.resultsPerPageOptions.selectedOption.label,
                         origPageSize: factFinder.resultsPerPageOptions.defaultOption.label
