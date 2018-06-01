@@ -25,21 +25,12 @@ class FactFinderFactory extends AbstractFactory
     }
 
     /**
-     * @return \SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToSessionClientInterface
-     */
-    public function getSessionClient()
-    {
-        return $this->getProvidedDependency(FactFinderDependencyProvider::SESSION_CLIENT);
-    }
-
-    /**
      * @return \SprykerEco\Yves\FactFinder\DataProvider\RecommendationsDataProviderInterface
      */
     public function createRecommendationsDataProvider()
     {
         return new RecommendationsDataProvider(
-            $this->getFactFinderClient(),
-            $this->getSessionClient()
+            $this->getFactFinderClient()
         );
     }
 
@@ -49,8 +40,7 @@ class FactFinderFactory extends AbstractFactory
     public function createProductCampaignsDataProvider()
     {
         return new ProductCampaignsDataProvider(
-            $this->getFactFinderClient(),
-            $this->getSessionClient()
+            $this->getFactFinderClient()
         );
     }
 
@@ -60,8 +50,7 @@ class FactFinderFactory extends AbstractFactory
     public function createShoppingCartCampaignsDataProvider()
     {
         return new ShoppingCartCampaignsDataProvider(
-            $this->getFactFinderClient(),
-            $this->getSessionClient()
+            $this->getFactFinderClient()
         );
     }
 

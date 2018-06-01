@@ -9,15 +9,10 @@ namespace SprykerEco\Yves\FactFinder\DataProvider;
 
 use SprykerEco\Shared\FactFinder\FactFinderConstants;
 use SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientInterface;
-use SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToSessionClientInterface;
 use Symfony\Component\HttpFoundation\Request;
 
 abstract class AbstractDataProvider
 {
-    /**
-     * @var \Spryker\Client\Session\SessionClientInterface
-     */
-    protected $sessionClient;
 
     /**
      * @var \SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientInterface
@@ -26,14 +21,9 @@ abstract class AbstractDataProvider
 
     /**
      * @param \SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientInterface $factFinderClient
-     * @param \SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToSessionClientInterface $sessionClient
      */
-    public function __construct(
-        FactFinderToFactFinderClientInterface $factFinderClient,
-        FactFinderToSessionClientInterface $sessionClient
-    ) {
+    public function __construct(FactFinderToFactFinderClientInterface $factFinderClient) {
         $this->factFinderClient = $factFinderClient;
-        $this->sessionClient = $sessionClient;
     }
 
     /**

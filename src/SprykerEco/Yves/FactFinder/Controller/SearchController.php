@@ -26,10 +26,7 @@ class SearchController extends AbstractController
      */
     public function indexAction(Request $request)
     {
-        $factFinderSearchRequestTransfer = new FactFinderSdkSearchRequestTransfer();
-        $requestArray = $request->query->all();
-        $requestArray[FactFinderConstants::REQUEST_PARAMETER_SID] = $request->cookies->get(FactFinderConstants::COOKIE_SID_NAME);
-        $factFinderSearchRequestTransfer->setRequest($requestArray);
+        $factFinderSearchRequestTransfer = $this->createFactFinderSearchRequestTransfer($request);
 
         $ffSearchResponseTransfer = $this->getFactory()
             ->getFactFinderClient()
@@ -73,5 +70,19 @@ class SearchController extends AbstractController
         }
 
         return null;
+    }
+
+    /**
+     * @param Request $request
+     * @return FactFinderSdkSearchRequestTransfer
+     */
+    protected function createFactFinderSearchRequestTransfer(Request $request)
+    {
+        $factFinderSearchRequestTransfer = new FactFinderSdkSearchRequestTransfer();
+        $requestArray = $request->query->all();
+        $requestArray[FactFinderConstants::REQUEST_PARAMETER_SID] = $request->cookies->get(FactFinderConstants::COOKIE_SID_NAME);
+        $factFinderSearchRequestTransfer->setRequest($requestArray);
+
+        return $factFinderSearchRequestTransfer;
     }
 }
