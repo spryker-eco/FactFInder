@@ -3,8 +3,6 @@
  * Use of this software requires acceptance of the Evaluation License Agreement. See LICENSE file.
  */
 
-'use strict';
-
 var $ = require('jquery');
 var factFinderSuggestions = require('./fact-finder-suggestions');
 var suggestionsBox = require('./fact-finder-suggestions-box');
