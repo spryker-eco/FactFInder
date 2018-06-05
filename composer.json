@@ -1,9 +1,9 @@
 {
   "name": "spryker-eco/fact-finder",
-  "description": "FactFinder bundle",
+  "description": "FactFinder module",
   "license": "MIT",
   "require": {
-    "spryker-eco/fact-finder-sdk": "@dev",
+    "spryker-eco/fact-finder-sdk": "^1.0.0",
     "spryker/kernel": "^3.0.0",
     "spryker/symfony": "^3.0.0"
   },
