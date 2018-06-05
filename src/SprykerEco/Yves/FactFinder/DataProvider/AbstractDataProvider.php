@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 abstract class AbstractDataProvider
 {
-
     /**
      * @var \SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientInterface
      */
@@ -22,7 +21,8 @@ abstract class AbstractDataProvider
     /**
      * @param \SprykerEco\Yves\FactFinder\Dependency\Clients\FactFinderToFactFinderClientInterface $factFinderClient
      */
-    public function __construct(FactFinderToFactFinderClientInterface $factFinderClient) {
+    public function __construct(FactFinderToFactFinderClientInterface $factFinderClient)
+    {
         $this->factFinderClient = $factFinderClient;
     }
 

@@ -73,8 +73,9 @@ class SearchController extends AbstractController
     }
 
     /**
-     * @param Request $request
-     * @return FactFinderSdkSearchRequestTransfer
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Generated\Shared\Transfer\FactFinderSdkSearchRequestTransfer
      */
     protected function createFactFinderSearchRequestTransfer(Request $request)
     {
