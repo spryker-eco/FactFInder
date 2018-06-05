@@ -11,6 +11,9 @@ use Generated\Shared\Transfer\QuoteTransfer;
 interface FactFinderFacadeInterface
 {
     /**
+     * Specification:
+     * - Tracks a user behaviour
+     *
      * @api
      *
      * @param \Generated\Shared\Transfer\QuoteTransfer $quoteTransfer
