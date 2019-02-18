@@ -1,7 +1,3 @@
-## Documentation
-
-[Documentation](https://spryker.github.io)
-
 # FactFinder Module
 
 [![Build Status](https://travis-ci.org/spryker-eco/fact-finder.svg?branch=master)](https://travis-ci.org/spryker-eco/fact-finder)
