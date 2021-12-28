@@ -17,6 +17,9 @@
 /src/*/Zed/*/Persistence/Propel/Base/*
 /src/*/Zed/*/Persistence/Propel/Map/*
 
+composer.lock
+vendor/
+
 # OS
 .DS_Store
 
